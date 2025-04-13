@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Rooms Accommodations - Villa Magellano</title>
+  <meta name="description" content="Explore our unique trulli accommodations, each offering authentic charm with modern comfort" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+  <link rel="icon" href="static/logo.jpeg" type="image/png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            serif: ['Playfair Display', 'serif'],
+          },
+          colors: {
+            trulli: {
+              100: 'hsl(36, 33%, 98%)',
+              200: 'hsl(36, 8%, 88%)',
+              500: 'hsl(33, 3%, 40%)',
+              900: 'hsl(33, 3%, 19%)',
+            }
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      color: hsl(33, 3%, 19%);
+      background-color: hsl(36, 33%, 98%);
+    }
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 500;
+      letter-spacing: -0.025em;
+    }
+    .hover-lift {
+      transition: transform 0.35s ease-out;
+    }
+    .hover-lift:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="bg-white py-4 sticky top-0 z-50 shadow-sm">
+    <div class="container mx-auto px-6 flex justify-between items-center">
+      <a href="index.html" class="text-2xl font-serif">Yours Trulli</a>
+      <div class="hidden md:flex space-x-8">
+        <a href="index.html" class="text-trulli-900 hover:text-trulli-500">Home</a>
+        <a href="about.html" class="text-trulli-900 hover:text-trulli-500">About us</a>
+        <a href="rooms.html" class="text-trulli-900 hover:text-trulli-500 font-medium">Rooms</a>
+        <a href="booking.html" class="text-trulli-900 hover:text-trulli-500">Book Now</a>
+        <a href="area.html" class="text-trulli-900 hover:text-trulli-500">Area</a>
+      </div>
+      <button class="md:hidden">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Rooms Header -->
+  <div class="pt-32 pb-16 bg-trulli-100">
+    <div class="container mx-auto px-6">
+      <div class="max-w-4xl mx-auto text-center">
+        <span class="inline-block px-3 py-1 text-xs tracking-wider uppercase bg-trulli-200 text-trulli-500 mb-6">
+          Authentic Accommodation
+        </span>
+        <h1 class="text-4xl md:text-5xl font-serif mb-6 leading-tight">
+          Our Villa Apartments
+        </h1>
+        <p class="text-lg text-trulli-500 leading-relaxed">
+          Each of our apartments has been meticulously restored to preserve its historical character while providing modern comfort. Choose the perfect accommodation for your authentic Garda Lake experience.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Room Listings -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-6">
+      <!-- Room 1 -->
+      <div class="mb-24">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <!-- Room Images -->
+          <div class="relative">
+            <div class="aspect-[4/3] overflow-hidden rounded-lg">
+              <img 
+                src="static/airbnb7.jpg" 
+                alt="Trullo Giardino exterior" 
+                class="w-full h-full object-cover hover:scale-105 transition-transform duration-1000"
+              />
+            </div>
+            <div class="grid grid-cols-3 gap-3 mt-3">
+              <div class="aspect-[4/3] overflow-hidden rounded-lg">
+                <img 
+                  src="static/airbnb4.jpg" 
+                  alt="Trullo Giardino pool" 
+                  class="w-full h-full object-cover hover:scale-105 transition-transform duration-1000"
+                />
+              </div>
+              <div class="aspect-[4/3] overflow-hidden rounded-lg">
+                <img 
+                  src="static/airbnb10.jpg" 
+                  alt="Trullo Giardino bedroom" 
+                  class="w-full h-full object-cover hover:scale-105 transition-transform duration-1000"
+                />
+              </div>
+              <div class="aspect-[4/3] overflow-hidden rounded-lg">
+                <img 
+                  src="static/airbnb9.jpg" 
+                  alt="Trullo Giardino bathroom" 
+                  class="w-full h-full object-cover hover:scale-105 transition-transform duration-1000"
+                />
+              </div>
+            </div>
+          </div>
+          
+          <!-- Room Info -->
+          <div class="flex flex-col justify-between">
+            <div>
+              <div class="flex justify-between items-center mb-4">
+                <h2 class="text-3xl font-serif">Suite Giardino</h2>
+                <span class="text-2xl font-serif text-trulli-500">€150 / night</span>
+              </div>
+              <p class="text-trulli-500 mb-6 leading-relaxed">
+                Our largest and most comfortable accommodation, Suite Giardino features a cluster of connected trulli with a private garden and kitche. Perfect for families or small groups seeking a comfortable experience.
+              </p>
+              
+              <!-- Amenities -->
+              <div class="mb-8">
+                <h3 class="text-xl font-medium mb-4">Amenities</h3>
+                <div class="grid grid-cols-2 gap-3">
+                  <div class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-trulli-500 mr-2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    <span>90 m² space</span>
+                  </div>
+                  <div class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-trulli-500 mr-2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    <span>Fast Wi-Fi pool</span>
+                  </div>
+                  <div class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-trulli-500 mr-2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    <span>Fully equipped kitchen</span>
+                  </div>
+                  <div class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-trulli-500 mr-2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    <span>2 bedrooms</span>
+                  </div>
+                  <div class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-trulli-500 mr-2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    <span>Outdoor dining area</span>
+                  </div>
+                  <div class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-trulli-500 mr-2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    <span>1 bathroom</span>
+                  </div>
+                  <div class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-trulli-500 mr-2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    <span>Air conditioning</span>
+                  </div>
+                  <div class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-trulli-500 mr-2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    <span>Private parking</span>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Capacity -->
+              <div class="mb-8">
+                <h3 class="text-xl font-medium mb-4">Capacity</h3>
+                <div class="flex space-x-8">
+                  <div class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-trulli-500 mr-2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    <span>Up to 4 adults</span>
+                  </div>
+                  <div class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-trulli-500 mr-2"><path d="M9 18h6"/><path d="M10 22v-4"/><path d="M14 22v-4"/><path d="M12 2v2"/><path d="m4.6 10-1.8 1.8"/><path d="m21.2 11.8-1.8-1.8"/><path d="M4 16h2"/><path d="M18 16h2"/><path d="m7.5 7.5 1 1"/><path d="m15.5 8.5 1-1"/><circle cx="12" cy="12" r="4"/></svg>
+                    <span>2 children (extra beds)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="mt-6">
+              <a href="booking.html" class="block w-full py-3 bg-trulli-900 text-white text-center font-medium hover:bg-trulli-900/90 transition-colors">
+                Book This Suite
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Room 3 -->
+      <div class="mb-24">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <!-- Room Images -->
+          <div class="relative">
+            <div class="aspect-[4/3] overflow-hidden rounded-lg">
+              <img 
+                src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=2667&auto=format&fit=crop" 
+                alt="Trullo Ulivo exterior" 
+                class="w-full h-full object-cover hover:scale-105 transition-transform duration-1000"
+              />
+            </div>
+            <div class="grid grid-cols-3 gap-3 mt-3">
+              <div class="aspect-[4/3] overflow-hidden rounded-lg">
+                <img 
+                  src="https://images.unsplash.com/photo-1614267157481-ca2b81ac6fcc?q=80&w=2670&auto=format&fit=crop" 
+                  alt="Trullo Ulivo living area" 
+                  class="w-full h-full object-cover hover:scale-105 transition-transform duration-1000"
+                />
+              </div>
+              <div class="aspect-[4/3] overflow-hidden rounded-lg">
+                <img 
+                  src="https://images.unsplash.com/photo-1600210492493-0946911123ea?q=80&w=2874&auto=format&fit=crop" 
+                  alt="Trullo Ulivo bedroom" 
+                  class="w-full h-full object-cover hover:scale-105 transition-transform duration-1000"
+                />
+              </div>
+              <div class="aspect-[4/3] overflow-hidden rounded-lg">
+                <img 
+                  src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2853&auto=format&fit=crop" 
+                  alt="Trullo Ulivo garden" 
+                  class="w-full h-full object-cover hover:scale-105 transition-transform duration-1000"
+                />
+              </div>
+            </div>
+          </div>
+          
+          <!-- Room Info -->
+          <div class="flex flex-col justify-between">
+            <div>
+              <div class="flex justify-between items-center mb-4">
+                <h2 class="text-3xl font-serif">Suite Panorama</h2>
+                <span class="text-2xl font-serif text-trulli-500">€180 / night</span>
+              </div>
+              <p class="text-trulli-500 mb-6 leading-relaxed">
+                Nestled among ancient olive trees, the suite Panorama offers a serene escape with a perfect blend of rustic charm and elegant comfort. This intimate accommodation is ideal for couples seeking privacy and tranquility.
+              </p>
+              
+              <!-- Amenities -->
+              <div class="mb-8">
+                <h3 class="text-xl font-medium mb-4">Amenities</h3>
+                <div class="grid grid-cols-2 gap-3">
+                  <div class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-trulli-500 mr-2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    <span>80 m² space</span>
+                  </div>
+                  <div class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-trulli-500 mr-2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    <span>Private garden with barbecue</span>
+                  </div>
+                  <div class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-trulli-500 mr-2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    <span>Kitchenette</span>
+                  </div>
+                  <div class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-trulli-500 mr-2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    <span>2 bedrooms</span>
+                  </div>
+                  <div class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-trulli-500 mr-2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    <span>Outdoor dining area</span>
+                  </div>
+                  <div class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-trulli-500 mr-2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    <span>2 bathrooms</span>
+                  </div>
+                  <div class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-trulli-500 mr-2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    <span>Air conditioning</span>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Capacity -->
+              <div class="mb-8">
+                <h3 class="text-xl font-medium mb-4">Capacity</h3>
+                <div class="flex items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-trulli-500 mr-2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                  <span>2 adults</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="mt-6">
+              <a href="booking.html" class="block w-full py-3 bg-trulli-900 text-white text-center font-medium hover:bg-trulli-900/90 transition-colors">
+                Book This Suite
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-6">
+      <div class="max-w-3xl mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-serif mb-6">Frequently Asked Questions</h2>
+          <p class="text-trulli-500">
+            Find answers to common questions about our accommodations
+          </p>
+        </div>
+        
+        <div class="space-y-6">
+          <!-- FAQ Item 1 -->
+          <div class="border-b border-trulli-200 pb-6">
+            <h3 class="text-xl font-medium mb-3">What is the check-in/check-out time?</h3>
+            <p class="text-trulli-500">
+              Check-in is from 4:00 PM to 12:00 PM, and check-out is by 11:00 AM. Early check-in or late check-out may be available upon request, subject to availability.
+            </p>
+          </div>
+          
+          
+          <!-- FAQ Item 3 -->
+          <div class="border-b border-trulli-200 pb-6">
+            <h3 class="text-xl font-medium mb-3">Are pets allowed?</h3>
+            <p class="text-trulli-500">
+              We welcome pets upon request. A pet fee of €20 per stay applies. Please inform us at the time of booking.
+            </p>
+          </div>
+          
+          <!-- FAQ Item 4 -->
+          <div class="border-b border-trulli-200 pb-6">
+            <h3 class="text-xl font-medium mb-3">Is there a minimum stay requirement?</h3>
+            <p class="text-trulli-500">
+              During high season (June-September), we require a minimum stay of 3 nights. During the rest of the year, the minimum stay is 2 nights. For holiday periods, different minimums may apply.
+            </p>
+          </div>
+          
+          <!-- FAQ Item 5 -->
+          <div>
+            <h3 class="text-xl font-medium mb-3">How do I get to Villa Magellano?</h3>
+            <p class="text-trulli-500">
+              The nearest highway exits are Peschiera del Garda (A4) and Verona Sud (A12).
+              The nearest airports are Verona (12 km) and Bergamo (30 km). We can arrange airport transfers for an additional fee, or you can rent a car. Detailed directions will be provided upon booking confirmation.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 md:py-28 relative">
+    <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1606046604972-77cc76aee944?q=80&w=2832&auto=format&fit=crop')] bg-cover bg-center opacity-20"></div>
+    <div class="absolute inset-0 bg-trulli-900/70"></div>
+    
+    <div class="container mx-auto px-6 relative z-10">
+      <div class="max-w-3xl mx-auto text-center text-white">
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-serif mb-6">
+          Reserve Your Villa Experience
+        </h2>
+        <p class="text-white/80 mb-10">
+          Book directly with us for the best rates and personalized service. We look forward to welcoming you at Villa Magellano.
+        </p>
+        <a 
+          href="booking.html" 
+          class="inline-block py-3 px-8 bg-white text-trulli-900 font-medium hover:bg-white/90 transition-colors"
+        >
+          Check Availability
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact" class="bg-trulli-900 text-white">
+    <div class="container mx-auto px-6 py-12">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div>
+          <h3 class="text-2xl font-serif mb-4">Villa Magellano</h3>
+          <p class="text-white/70 mb-6">Experience the magic of authentic Villa in our meticulously restored suites.</p>
+        </div>
+        
+        <div>
+          <h4 class="text-lg font-medium mb-4">Contact</h4>
+          <address class="text-white/70 not-italic">
+            <p class="mb-2">Via Magellano, 26</p>
+            <p class="mb-2">Castelnuovo del Garda 37014, Verona</p>
+            <p class="mb-2">+39 3518401998</p>
+            <p>magellanosuite@gmail.com</p>
+          </address>
+        </div>
+        
+        <div>
+          <h4 class="text-lg font-medium mb-4">Links</h4>
+          <ul class="space-y-2 text-white/70">
+            <li><a href="index.html" class="hover:text-white transition-colors">Home</a></li>
+            <li><a href="about.html" class="hover:text-white transition-colors">About us</a></li>
+            <li><a href="rooms.html" class="hover:text-white transition-colors">Rooms</a></li>
+            <li><a href="booking.html" class="hover:text-white transition-colors">Book Now</a></li>
+            <li><a href="area.html" class="hover:text-white transition-colors">Area</a></li>
+          </ul>
+        </div>
+        
+      </div>
+      
+      <div class="border-t border-white/20 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center">
+        <p class="text-white/70 text-sm">&copy; 2025 Villa Magellano. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Required script -->
+  <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
+</body>
+</html>
