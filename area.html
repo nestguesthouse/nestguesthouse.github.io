@@ -55,6 +55,28 @@
     .image-grid img:hover {
       transform: scale(1.05);
     }
+    /* Checkbox Hack for Menu Toggle */
+    #menu-toggle {
+      display: none;
+    }
+    #menu {
+      display: none;
+      transform: translateX(100%);
+      transition: transform 0.3s ease-in-out;
+    }
+    #menu-toggle:checked ~ #menu {
+      display: flex;
+      transform: translateX(0);
+    }
+    @media (min-width: 768px) {
+      #menu {
+        display: flex;
+        transform: translateX(0);
+      }
+      #menu-toggle-label, #menu-close-label {
+        display: none;
+      }
+    }
   </style>
 </head>
 <body>
