@@ -55,13 +55,14 @@
     #menu-toggle {
       display: none;
     }
-    #menu-toggle:checked ~ #menu {
-      transform: translateX(0);
-      display: flex;
-    }
     #menu {
       transition: transform 0.3s ease-in-out;
       transform: translateX(100%);
+      display: none;
+    }
+    #menu-toggle:checked ~ .nav-container #menu {
+      transform: translateX(0);
+      display: flex;
     }
     @media (min-width: 768px) {
       #menu {
@@ -71,13 +72,16 @@
       #menu-toggle-label {
         display: none;
       }
+      #menu-close-label {
+        display: none;
+      }
     }
   </style>
 </head>
 <body>
 <!-- Navbar -->
 <nav class="bg-white py-4 sticky top-0 z-50 shadow-sm">
-  <div class="container mx-auto px-4 flex justify-between items-center">
+  <div class="container mx-auto px-4 flex justify-between items-center nav-container">
     <a href="#" class="text-xl md:text-2xl font-serif">Nest Guesthouse</a>
 
     <!-- Hamburger Button (Mobile) -->
@@ -89,16 +93,19 @@
     </label>
 
     <!-- Navigation Links -->
-    <div id="menu" class="fixed inset-y-0 right-0 w-full bg-white md:static md:w-auto md:bg-transparent flex flex-col items-center justify-center px-4 py-4 h-full md:flex-row md:space-x-6 md:h-auto hidden">
+    <div id="menu" class="fixed inset-y-0 right-0 w-full bg-white md:static md:w-auto md:bg-transparent flex flex-col items-center justify-center px-4 py-4 h-full md:flex-row md:space-x-6 md:h-auto">
+      <!-- Close Button (Mobile) -->
+      <label for="menu-toggle" id="menu-close-label" class="md:hidden absolute top-4 right-4 cursor-pointer">
+        <svg class="w-6 h-6 text-trulli-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </label>
       <a href="about.html" class="text-trulli-900 hover:text-trulli-500 py-4 md:py-0 text-lg">About us</a>
       <a href="rooms.html" class="text-trulli-900 hover:text-trulli-500 py-4 md:py-0 text-lg">Rooms</a>
       <a href="booking.html" class="text-trulli-900 hover:text-trulli-500 py-4 md:py-0 text-lg">Book Now</a>
       <a href="area.html" class="text-trulli-900 hover:text-trulli-500 py-4 md:py-0 text-lg">Area</a>
       <a href="index_it.html" id="lang-switch" class="py-4 md:py-0">
         <img src="static/ita_logo.png" alt="ITA Flag" class="w-4 h-4">
-      </a>
-      <a href="index.html" id="lang-switch" class="py-4 md:py-0">
-        <img src="static/eng_logo.png" alt="ITA Flag" class="w-4 h-4">
       </a>
     </div>
   </div>
