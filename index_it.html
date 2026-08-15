@@ -10,28 +10,34 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
   <link rel="icon" href="static/nest_logo copy.jpeg" type="image/jpeg">
   <script src="https://cdn.tailwindcss.com"></script>
+  
   <script>
-    // Automatic Language Redirection Logic
+    // Gestione lingua e reindirizzamento automatico
     (function detectLanguage() {
-      // Check if user manually picked a language during this session
-      const savedLang = sessionStorage.getItem('preferredLang');
+      const savedLang = localStorage.getItem('preferredLang');
       if (savedLang) return; 
 
-      // Detect browser primary language
       const userLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
       const currentPath = window.location.pathname;
 
-      // If user browser is NOT Italian and they are currently on Italian page (_it.html)
+      // Esempio redirect se l'utente non è italiano
       if (!userLang.startsWith('it') && (currentPath.includes('_it.html') || currentPath.endsWith('index_it.html'))) {
-        // Option to auto-redirect to English page:
-        // window.location.href = 'index.html';
+        // window.location.href = 'index.html'; // Decommentare per attivare il redirect automatico
       }
     })();
 
-    function setLanguagePreference(lang) {
-      sessionStorage.setItem('preferredLang', lang);
+    function changeLanguage(lang) {
+      localStorage.setItem('preferredLang', lang);
+      if (lang === 'en') {
+        window.location.href = 'index.html';
+      } else if (lang === 'it') {
+        window.location.href = 'index_it.html';
+      } else if (lang === 'de') {
+        window.location.href = 'index_de.html';
+      }
     }
   </script>
+
   <script>
     tailwind.config = {
       theme: {
@@ -57,9 +63,7 @@
     }
   </script>
   <style>
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
     body {
       font-family: 'Inter', sans-serif;
       color: hsl(33, 3%, 19%);
@@ -77,14 +81,12 @@
       transform: translateY(-4px);
       box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
     }
-    #menu-toggle:checked ~ #menu {
-      display: flex;
-    }
+    #menu-toggle:checked ~ #menu { display: flex; }
   </style>
 </head>
 <body class="relative min-h-screen flex flex-col justify-between">
 
-  <!-- Floating WhatsApp Contact Button -->
+  <!-- Floating WhatsApp Button -->
   <a href="https://wa.me/393518401998?text=Salve%20Nest%20Guesthouse,%20vorrei%20chiedere%20informazioni%20su%20una%20prenotazione." 
      target="_blank" 
      rel="noopener noreferrer" 
@@ -103,7 +105,7 @@
     <div class="container mx-auto px-4 flex justify-between items-center">
       <a href="#" class="text-xl md:text-2xl font-serif font-semibold text-trulli-900 tracking-tight">Nest Guesthouse</a>
 
-      <!-- Navigation Links -->
+      <!-- Menu Links -->
       <div id="menu" class="hidden fixed inset-0 bg-white z-50 flex-col items-center justify-center space-y-6 md:static md:flex md:flex-row md:space-y-0 md:space-x-8 md:bg-transparent">
         <label for="menu-toggle" class="md:hidden absolute top-4 right-4 cursor-pointer text-trulli-900">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
@@ -113,19 +115,39 @@
         <a href="booking_it.html" class="text-trulli-900 hover:text-brand-gold font-medium transition-colors">Prenota</a>
         <a href="area_it.html" class="text-trulli-900 hover:text-brand-gold font-medium transition-colors">Zona</a>
         
-        <!-- Manual Language Override Switcher -->
-        <div class="flex items-center space-x-3 border-l pl-4 border-gray-200">
-          <a href="index_it.html" onclick="setLanguagePreference('it')" title="Italiano" class="hover:opacity-75 transition-opacity">
-            <img src="static/ita_logo.png" alt="ITA" class="w-5 h-5 rounded-full object-cover">
-          </a>
-          <a href="index.html" onclick="setLanguagePreference('en')" title="English" class="hover:opacity-75 transition-opacity">
-            <img src="static/eng_logo.png" alt="ENG" class="w-5 h-5 rounded-full object-cover">
-          </a>
+        <!-- Menu a Tendina Lingua Professionale -->
+        <div class="relative group border-l pl-4 border-gray-200">
+          <button class="flex items-center gap-1.5 text-sm font-semibold text-trulli-900 hover:text-brand-gold transition-colors py-1">
+            <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
+            </svg>
+            <span>IT</span>
+            <svg class="w-3.5 h-3.5 text-gray-400 group-hover:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          
+          <!-- Dropdown Menu -->
+          <div class="absolute right-0 mt-1 w-32 bg-white rounded-xl shadow-xl border border-gray-100 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all duration-200 z-50 overflow-hidden">
+            <button onclick="changeLanguage('it')" class="w-full text-left px-4 py-2.5 text-xs font-medium hover:bg-trulli-100 flex items-center justify-between text-trulli-900">
+              <span>Italiano</span>
+              <span class="text-gray-400">IT</span>
+            </button>
+            <button onclick="changeLanguage('en')" class="w-full text-left px-4 py-2.5 text-xs font-medium hover:bg-trulli-100 flex items-center justify-between text-trulli-900 border-t border-gray-50">
+              <span>English</span>
+              <span class="text-gray-400">EN</span>
+            </button>
+            <button onclick="changeLanguage('de')" class="w-full text-left px-4 py-2.5 text-xs font-medium hover:bg-trulli-100 flex items-center justify-between text-trulli-900 border-t border-gray-50">
+              <span>Deutsch</span>
+              <span class="text-gray-400">DE</span>
+            </button>
+          </div>
         </div>
+
         <a href="tel:+393518401998" class="bg-trulli-900 text-white px-4 py-2 rounded-full text-sm hover:bg-trulli-500 transition-colors">+39 351 840 1998</a>
       </div>
 
-      <!-- Hamburger Button (Mobile) -->
+      <!-- Mobile Hamburger Button -->
       <input type="checkbox" id="menu-toggle" class="hidden">
       <label for="menu-toggle" class="md:hidden cursor-pointer text-trulli-900">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
@@ -134,7 +156,7 @@
   </nav>
 
   <!-- Hero Section -->
-  <header class="relative min-h-[85vh] flex items-center justify-center">
+  <header class="relative min-h-[75vh] flex items-center justify-center">
     <div class="absolute inset-0">
       <img src="static/11.jpg" alt="Vista Lago di Garda" class="w-full h-full object-cover" />
       <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20"></div>
@@ -145,55 +167,68 @@
       <h1 class="text-4xl md:text-6xl lg:text-7xl font-serif mb-6 leading-tight max-w-4xl">
         Vivi l'autentico Lago di Garda
       </h1>
-      <p class="text-lg md:text-xl text-white/90 mb-10 max-w-2xl font-light">
+      <p class="text-lg md:text-xl text-white/90 mb-6 max-w-2xl font-light">
         Un'oasi di pace e raffinatezza a due passi dalle rive del lago.
       </p>
-
-      <!-- WhatsApp Direct Inquiry Booking Box -->
-      <div class="w-full max-w-4xl bg-white/95 backdrop-blur-md rounded-2xl p-4 md:p-6 shadow-2xl text-trulli-900 text-left">
-        <form id="whatsappBookingForm" onsubmit="sendWhatsAppBooking(event)" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4 items-end">
-          <div>
-            <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Check-in</label>
-            <input type="date" id="checkin" required class="w-full px-3 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-trulli-900">
-          </div>
-          <div>
-            <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Check-out</label>
-            <input type="date" id="checkout" required class="w-full px-3 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-trulli-900">
-          </div>
-          <div>
-            <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Adulti</label>
-            <select id="adults" class="w-full px-3 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-trulli-900">
-              <option value="1 Adulto">1 Adulto</option>
-              <option value="2 Adulti" selected>2 Adulti</option>
-              <option value="3 Adulti">3 Adulti</option>
-              <option value="4+ Adulti">4+ Adulti</option>
-            </select>
-          </div>
-          <div>
-            <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Bambini</label>
-            <select id="kids" class="w-full px-3 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-trulli-900">
-              <option value="0 Bambini" selected>0 Bambini</option>
-              <option value="1 Bambino">1 Bambino</option>
-              <option value="2 Bambini">2 Bambini</option>
-              <option value="3+ Bambini">3+ Bambini</option>
-            </select>
-          </div>
-          <button type="submit" class="w-full bg-brand-whatsapp hover:bg-emerald-600 text-white font-medium py-3 rounded-lg transition-colors text-sm shadow-md flex items-center justify-center gap-2">
-            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.572-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-            Chiedi su WhatsApp
-          </button>
-        </form>
-      </div>
     </div>
   </header>
 
-  <!-- Room & Property Inspector Section -->
-  <section class="py-20 bg-white">
+  <!-- Banner WhatsApp Richiesta Prenotazione -->
+  <section class="relative -mt-16 z-30 container mx-auto px-4 mb-16">
+    <div class="bg-white rounded-3xl p-6 md:p-8 shadow-2xl border border-gray-100 max-w-5xl mx-auto">
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-6">
+        <div>
+          <div class="flex items-center gap-2 text-brand-whatsapp font-semibold text-xs uppercase tracking-wider mb-1">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.572-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+            Richiesta Rapida
+          </div>
+          <h2 class="text-2xl font-serif text-trulli-900">Invia una richiesta diretta su WhatsApp</h2>
+        </div>
+        <p class="text-xs text-trulli-500 max-w-xs">Inserisci le date e gli ospiti: ti aprirà direttamente WhatsApp con il messaggio già formattato!</p>
+      </div>
+
+      <form onsubmit="sendWhatsAppBooking(event)" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4 items-end">
+        <div>
+          <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Check-in</label>
+          <input type="date" id="checkin" required class="w-full px-3 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-trulli-900">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Check-out</label>
+          <input type="date" id="checkout" required class="w-full px-3 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-trulli-900">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Adulti</label>
+          <select id="adults" class="w-full px-3 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-trulli-900">
+            <option value="1 Adulto">1 Adulto</option>
+            <option value="2 Adulti" selected>2 Adulti</option>
+            <option value="3 Adulti">3 Adulti</option>
+            <option value="4+ Adulti">4+ Adulti</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Bambini</label>
+          <select id="kids" class="w-full px-3 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-trulli-900">
+            <option value="0 Bambini" selected>0 Bambini</option>
+            <option value="1 Bambino">1 Bambino</option>
+            <option value="2 Bambini">2 Bambini</option>
+            <option value="3+ Bambini">3+ Bambini</option>
+          </select>
+        </div>
+        <button type="submit" class="w-full bg-brand-whatsapp hover:bg-emerald-600 text-white font-medium py-3 rounded-xl transition-all text-sm shadow-md hover:shadow-lg flex items-center justify-center gap-2">
+          <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.572-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+          Invia su WhatsApp
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Camere & Struttura -->
+  <section class="py-12 bg-white">
     <div class="container mx-auto px-4">
       <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12">
         <div>
           <span class="text-xs uppercase tracking-widest text-brand-gold font-semibold">Le Nostre Soluzioni</span>
-          <h2 class="text-3xl md:text-5xl font-serif mt-2">Ispeziona Camere & Struttura</h2>
+          <h2 class="text-3xl md:text-5xl font-serif mt-2">Camere & Struttura</h2>
         </div>
         <p class="text-trulli-500 max-w-md mt-4 md:mt-0">
           Esplora gli spazi finemente arredati della villa e trova la sistemazione perfetta per il tuo soggiorno.
@@ -221,7 +256,7 @@
           </div>
           <div class="px-6 pb-6 pt-0">
             <button onclick="openModal('Camera Deluxe', 'Ampia stanza di 30mq dotata di letto king size, balcone affacciato sul giardino, minibar e doccia emozionale.')" class="w-full py-2.5 border border-trulli-900 text-trulli-900 hover:bg-trulli-900 hover:text-white transition-colors text-sm rounded-lg font-medium">
-              Ispeziona Dettagli
+              Dettagli Camera
             </button>
           </div>
         </div>
@@ -245,7 +280,7 @@
           </div>
           <div class="px-6 pb-6 pt-0">
             <button onclick="openModal('Suite Exclusive', 'La nostra sistemazione di punta con salotto dedicato, vasca idromassaggio integrata e terrazzo ad uso esclusivo.')" class="w-full py-2.5 border border-trulli-900 text-trulli-900 hover:bg-trulli-900 hover:text-white transition-colors text-sm rounded-lg font-medium">
-              Ispeziona Dettagli
+              Dettagli Camera
             </button>
           </div>
         </div>
@@ -269,7 +304,7 @@
           </div>
           <div class="px-6 pb-6 pt-0">
             <button onclick="openModal('Piscina & Giardino', 'Un giardino mediterraneo con ulivi secolari e piscina riscaldata per i tuoi momenti di relax in totale privacy.')" class="w-full py-2.5 border border-trulli-900 text-trulli-900 hover:bg-trulli-900 hover:text-white transition-colors text-sm rounded-lg font-medium">
-              Ispeziona Struttura
+              Dettagli Struttura
             </button>
           </div>
         </div>
@@ -277,7 +312,7 @@
     </div>
   </section>
 
-  <!-- Interactive Quick Inspect Modal -->
+  <!-- Modal Dettagli -->
   <div id="inspectModal" class="fixed inset-0 bg-black/60 z-50 hidden backdrop-blur-sm flex items-center justify-center p-4">
     <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl relative">
       <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
@@ -347,7 +382,7 @@
 
   <!-- Scripts -->
   <script>
-    // WhatsApp Dynamic Booking Handler
+    // Generatore automatico del messaggio WhatsApp
     function sendWhatsAppBooking(event) {
       event.preventDefault();
 
@@ -357,16 +392,18 @@
       const adults = document.getElementById('adults').value;
       const kids = document.getElementById('kids').value;
 
-      const message = `Salve Nest Guesthouse! Vorrei informazioni per una prenotazione:%0A` +
-                      `- Check-in: ${checkin}%0A` +
-                      `- Check-out: ${checkout}%0A` +
-                      `- Ospiti: ${adults}, ${kids}`;
+      // Messaggio precompilato e formattato
+      const message = `Salve Nest Guesthouse! Vorrei informazioni sulla disponibilità per un soggiorno:%0A%0A` +
+                      `📅 *Check-in:* ${checkin}%0A` +
+                      `📅 *Check-out:* ${checkout}%0A` +
+                      `👥 *Ospiti:* ${adults}, ${kids}%0A%0A` +
+                      `Resto in attesa di un vostro riscontro. Grazie!`;
 
       const whatsappUrl = `https://wa.me/${phone}?text=${message}`;
       window.open(whatsappUrl, '_blank');
     }
 
-    // Quick Inspect Modal Logic
+    // Modal Dettagli
     function openModal(title, description) {
       document.getElementById('modalTitle').innerText = title;
       document.getElementById('modalDescription').innerText = description;
