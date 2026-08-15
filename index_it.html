@@ -11,6 +11,28 @@
   <link rel="icon" href="static/nest_logo copy.jpeg" type="image/jpeg">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
+    // Automatic Language Redirection Logic
+    (function detectLanguage() {
+      // Check if user manually picked a language during this session
+      const savedLang = sessionStorage.getItem('preferredLang');
+      if (savedLang) return; 
+
+      // Detect browser primary language
+      const userLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+      const currentPath = window.location.pathname;
+
+      // If user browser is NOT Italian and they are currently on Italian page (_it.html)
+      if (!userLang.startsWith('it') && (currentPath.includes('_it.html') || currentPath.endsWith('index_it.html'))) {
+        // Option to auto-redirect to English page:
+        // window.location.href = 'index.html';
+      }
+    })();
+
+    function setLanguagePreference(lang) {
+      sessionStorage.setItem('preferredLang', lang);
+    }
+  </script>
+  <script>
     tailwind.config = {
       theme: {
         extend: {
@@ -90,9 +112,15 @@
         <a href="rooms_it.html" class="text-trulli-900 hover:text-brand-gold font-medium transition-colors">Camere</a>
         <a href="booking_it.html" class="text-trulli-900 hover:text-brand-gold font-medium transition-colors">Prenota</a>
         <a href="area_it.html" class="text-trulli-900 hover:text-brand-gold font-medium transition-colors">Zona</a>
+        
+        <!-- Manual Language Override Switcher -->
         <div class="flex items-center space-x-3 border-l pl-4 border-gray-200">
-          <a href="index_it.html" class="hover:opacity-75"><img src="static/ita_logo.png" alt="Italiano" class="w-5 h-5 rounded-full object-cover"></a>
-          <a href="index.html" class="hover:opacity-75"><img src="static/eng_logo.png" alt="English" class="w-5 h-5 rounded-full object-cover"></a>
+          <a href="index_it.html" onclick="setLanguagePreference('it')" title="Italiano" class="hover:opacity-75 transition-opacity">
+            <img src="static/ita_logo.png" alt="ITA" class="w-5 h-5 rounded-full object-cover">
+          </a>
+          <a href="index.html" onclick="setLanguagePreference('en')" title="English" class="hover:opacity-75 transition-opacity">
+            <img src="static/eng_logo.png" alt="ENG" class="w-5 h-5 rounded-full object-cover">
+          </a>
         </div>
         <a href="tel:+393518401998" class="bg-trulli-900 text-white px-4 py-2 rounded-full text-sm hover:bg-trulli-500 transition-colors">+39 351 840 1998</a>
       </div>
@@ -121,28 +149,38 @@
         Un'oasi di pace e raffinatezza a due passi dalle rive del lago.
       </p>
 
-      <!-- Quick Room Availability Inspector Box -->
+      <!-- WhatsApp Direct Inquiry Booking Box -->
       <div class="w-full max-w-4xl bg-white/95 backdrop-blur-md rounded-2xl p-4 md:p-6 shadow-2xl text-trulli-900 text-left">
-        <form action="booking_it.html" method="GET" class="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
+        <form id="whatsappBookingForm" onsubmit="sendWhatsAppBooking(event)" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4 items-end">
           <div>
             <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Check-in</label>
-            <input type="date" required class="w-full px-3 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-trulli-900">
+            <input type="date" id="checkin" required class="w-full px-3 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-trulli-900">
           </div>
           <div>
             <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Check-out</label>
-            <input type="date" required class="w-full px-3 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-trulli-900">
+            <input type="date" id="checkout" required class="w-full px-3 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-trulli-900">
           </div>
           <div>
-            <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Ospiti</label>
-            <select class="w-full px-3 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-trulli-900">
-              <option>1 Ospite</option>
-              <option selected>2 Ospiti</option>
-              <option>3 Ospiti</option>
-              <option>4+ Ospiti</option>
+            <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Adulti</label>
+            <select id="adults" class="w-full px-3 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-trulli-900">
+              <option value="1 Adulto">1 Adulto</option>
+              <option value="2 Adulti" selected>2 Adulti</option>
+              <option value="3 Adulti">3 Adulti</option>
+              <option value="4+ Adulti">4+ Adulti</option>
             </select>
           </div>
-          <button type="submit" class="w-full bg-trulli-900 hover:bg-trulli-500 text-white font-medium py-3 rounded-lg transition-colors text-sm shadow-md">
-            Verifica Disponibilità
+          <div>
+            <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Bambini</label>
+            <select id="kids" class="w-full px-3 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-trulli-900">
+              <option value="0 Bambini" selected>0 Bambini</option>
+              <option value="1 Bambino">1 Bambino</option>
+              <option value="2 Bambini">2 Bambini</option>
+              <option value="3+ Bambini">3+ Bambini</option>
+            </select>
+          </div>
+          <button type="submit" class="w-full bg-brand-whatsapp hover:bg-emerald-600 text-white font-medium py-3 rounded-lg transition-colors text-sm shadow-md flex items-center justify-center gap-2">
+            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.572-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+            Chiedi su WhatsApp
           </button>
         </form>
       </div>
@@ -309,6 +347,25 @@
 
   <!-- Scripts -->
   <script>
+    // WhatsApp Dynamic Booking Handler
+    function sendWhatsAppBooking(event) {
+      event.preventDefault();
+
+      const phone = "393518401998";
+      const checkin = document.getElementById('checkin').value;
+      const checkout = document.getElementById('checkout').value;
+      const adults = document.getElementById('adults').value;
+      const kids = document.getElementById('kids').value;
+
+      const message = `Salve Nest Guesthouse! Vorrei informazioni per una prenotazione:%0A` +
+                      `- Check-in: ${checkin}%0A` +
+                      `- Check-out: ${checkout}%0A` +
+                      `- Ospiti: ${adults}, ${kids}`;
+
+      const whatsappUrl = `https://wa.me/${phone}?text=${message}`;
+      window.open(whatsappUrl, '_blank');
+    }
+
     // Quick Inspect Modal Logic
     function openModal(title, description) {
       document.getElementById('modalTitle').innerText = title;
