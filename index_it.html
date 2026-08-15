@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nest Guesthouse - Lago di Garda</title>
   <meta name="description" content="Experience the authentic Garda Lake in our luxurious villa" />
-  <meta name="keywords" content="nestguesthouse">
+  <meta name="keywords" content="nestguesthouse, lago di garda, b&b, hotel, verona">
   <meta name="google-site-verification" content="google1a3b92520ca0929d" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
   <link rel="icon" href="static/nest_logo copy.jpeg" type="image/jpeg">
@@ -21,9 +21,13 @@
           colors: {
             trulli: {
               100: 'hsl(36, 33%, 98%)',
-              200: 'hsl(36, 8%, 88%)',
+              200: 'hsl(36, 15%, 92%)',
               500: 'hsl(33, 3%, 40%)',
               900: 'hsl(33, 3%, 19%)',
+            },
+            brand: {
+              gold: '#C5A880',
+              whatsapp: '#25D366'
             }
           },
         }
@@ -45,207 +49,251 @@
       letter-spacing: -0.025em;
     }
     .hover-lift {
-      transition: transform 0.35s ease-out;
+      transition: transform 0.35s ease-out, box-shadow 0.35s ease-out;
     }
     .hover-lift:hover {
       transform: translateY(-4px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-    }
-    /* Checkbox Hack for Menu Toggle */
-    #menu-toggle {
-      display: none;
-    }
-    #menu {
-      display: none;
-      transform: translateX(100%);
-      transition: transform 0.3s ease-in-out;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
     }
     #menu-toggle:checked ~ #menu {
       display: flex;
-      transform: translateX(0);
-    }
-    @media (min-width: 768px) {
-      #menu {
-        display: flex;
-        transform: translateX(0);
-      }
-      #menu-toggle-label {
-        display: none;
-      }
-      #menu-close-label {
-        display: none;
-      }
     }
   </style>
 </head>
-<body>
-<!-- Navbar -->
-<nav class="bg-white py-4 sticky top-0 z-50 shadow-sm">
-  <div class="container mx-auto px-4 flex justify-between items-center">
-    <a href="#" class="text-xl md:text-2xl font-serif">Nest Guesthouse</a>
+<body class="relative min-h-screen flex flex-col justify-between">
 
-    <!-- Hamburger Button (Mobile) -->
-    <input type="checkbox" id="menu-toggle" class="hidden">
-    <label for="menu-toggle" id="menu-toggle-label" class="md:hidden focus:outline-none cursor-pointer">
-      <svg class="w-6 h-6 text-trulli-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-      </svg>
-    </label>
+  <!-- Floating WhatsApp Contact Button -->
+  <a href="https://wa.me/393518401998?text=Salve%20Nest%20Guesthouse,%20vorrei%20chiedere%20informazioni%20su%20una%20prenotazione." 
+     target="_blank" 
+     rel="noopener noreferrer" 
+     aria-label="Chat su WhatsApp"
+     class="fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-brand-whatsapp text-white px-4 py-3 rounded-full shadow-2xl hover:scale-105 transition-all duration-300 group">
+    <span class="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs transition-all duration-500 ease-in-out font-medium text-sm">
+      Chatta su WhatsApp
+    </span>
+    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+      <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.572-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+    </svg>
+  </a>
 
-    <!-- Navigation Links -->
-    <div id="menu" class="fixed inset-y-0 right-0 w-full bg-white md:static md:w-auto md:bg-transparent flex flex-col items-center justify-center px-4 py-4 h-full md:flex-row md:space-x-6 md:h-auto">
-      <!-- Close Button (Mobile) -->
-      <label for="menu-toggle" id="menu-close-label" class="md:hidden absolute top-4 right-4 cursor-pointer">
-        <svg class="w-6 h-6 text-trulli-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-        </svg>
-      </label>
-      <a href="about_it.html" class="text-trulli-900 hover:text-trulli-500 py-4 md:py-0 text-lg">Chi siamo</a>
-      <a href="rooms_it.html" class="text-trulli-900 hover:text-trulli-500 py-4 md:py-0 text-lg">Camere</a>
-      <a href="booking_it.html" class="text-trulli-900 hover:text-trulli-500 py-4 md:py-0 text-lg">Prenota</a>
-      <a href="area_it.html" class="text-trulli-900 hover:text-trulli-500 py-4 md:py-0 text-lg">Zona</a>
-      <a href="index_it.html" id="lang-switch" class="py-4 md:py-0">
-        <img src="static/ita_logo.png" alt="ITA Flag" class="w-4 h-4">
-      </a>
-      <a href="index.html" id="lang-switch" class="py-4 md:py-0">
-        <img src="static/eng_logo.png" alt="ENG Flag" class="w-4 h-4">
-      </a>
-     <a href="tel:+393518401998" class="text-trulli-900 hover:text-trulli-500 py-4 md:py-0 text-lg">+393518401998</a>
-    </div>
-  </div>
-</nav>
+  <!-- Header Navigation -->
+  <nav class="bg-white py-4 sticky top-0 z-40 shadow-sm backdrop-blur-md bg-white/90">
+    <div class="container mx-auto px-4 flex justify-between items-center">
+      <a href="#" class="text-xl md:text-2xl font-serif font-semibold text-trulli-900 tracking-tight">Nest Guesthouse</a>
 
-  <!-- Hero -->
-  <header class="relative h-[70vh] md:h-screen">
-    <div class="absolute inset-0">
-      <img src="static/11.jpg" alt="Vista lago" class="w-full h-full object-cover" />
-      <div class="absolute inset-0 bg-black bg-opacity-40"></div>
-    </div>
-    <div class="relative h-full flex items-center">
-      <div class="container mx-auto px-4 py-10 md:py-20 text-center md:text-left">
-        <div class="max-w-3xl mx-auto md:mx-0">
-          <h1 class="text-3xl md:text-4xl lg:text-6xl text-white font-serif mb-6 leading-tight">
-            Vivi l'autentico Lago di Garda
-          </h1>
-          <p class="text-lg md:text-xl text-white text-opacity-90 mb-8">
-            Comfort moderno incontra il fascino tradizionale nella nostra villa
-          </p>
-          <a href="booking_it.html" class="inline-block py-3 px-6 bg-white text-trulli-900 font-medium hover:bg-opacity-90 transition-colors">
-            Prenota il tuo soggiorno
-          </a>
+      <!-- Navigation Links -->
+      <div id="menu" class="hidden fixed inset-0 bg-white z-50 flex-col items-center justify-center space-y-6 md:static md:flex md:flex-row md:space-y-0 md:space-x-8 md:bg-transparent">
+        <label for="menu-toggle" class="md:hidden absolute top-4 right-4 cursor-pointer text-trulli-900">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </label>
+        <a href="about_it.html" class="text-trulli-900 hover:text-brand-gold font-medium transition-colors">Chi siamo</a>
+        <a href="rooms_it.html" class="text-trulli-900 hover:text-brand-gold font-medium transition-colors">Camere</a>
+        <a href="booking_it.html" class="text-trulli-900 hover:text-brand-gold font-medium transition-colors">Prenota</a>
+        <a href="area_it.html" class="text-trulli-900 hover:text-brand-gold font-medium transition-colors">Zona</a>
+        <div class="flex items-center space-x-3 border-l pl-4 border-gray-200">
+          <a href="index_it.html" class="hover:opacity-75"><img src="static/ita_logo.png" alt="Italiano" class="w-5 h-5 rounded-full object-cover"></a>
+          <a href="index.html" class="hover:opacity-75"><img src="static/eng_logo.png" alt="English" class="w-5 h-5 rounded-full object-cover"></a>
         </div>
+        <a href="tel:+393518401998" class="bg-trulli-900 text-white px-4 py-2 rounded-full text-sm hover:bg-trulli-500 transition-colors">+39 351 840 1998</a>
+      </div>
+
+      <!-- Hamburger Button (Mobile) -->
+      <input type="checkbox" id="menu-toggle" class="hidden">
+      <label for="menu-toggle" class="md:hidden cursor-pointer text-trulli-900">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </label>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="relative min-h-[85vh] flex items-center justify-center">
+    <div class="absolute inset-0">
+      <img src="static/11.jpg" alt="Vista Lago di Garda" class="w-full h-full object-cover" />
+      <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20"></div>
+    </div>
+    
+    <div class="relative container mx-auto px-4 py-20 text-center text-white z-10 flex flex-col items-center">
+      <span class="text-xs uppercase tracking-widest bg-white/20 backdrop-blur-md px-4 py-1.5 rounded-full mb-4 font-semibold">Lago di Garda, Italia</span>
+      <h1 class="text-4xl md:text-6xl lg:text-7xl font-serif mb-6 leading-tight max-w-4xl">
+        Vivi l'autentico Lago di Garda
+      </h1>
+      <p class="text-lg md:text-xl text-white/90 mb-10 max-w-2xl font-light">
+        Un'oasi di pace e raffinatezza a due passi dalle rive del lago.
+      </p>
+
+      <!-- Quick Room Availability Inspector Box -->
+      <div class="w-full max-w-4xl bg-white/95 backdrop-blur-md rounded-2xl p-4 md:p-6 shadow-2xl text-trulli-900 text-left">
+        <form action="booking_it.html" method="GET" class="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
+          <div>
+            <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Check-in</label>
+            <input type="date" required class="w-full px-3 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-trulli-900">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Check-out</label>
+            <input type="date" required class="w-full px-3 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-trulli-900">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Ospiti</label>
+            <select class="w-full px-3 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-trulli-900">
+              <option>1 Ospite</option>
+              <option selected>2 Ospiti</option>
+              <option>3 Ospiti</option>
+              <option>4+ Ospiti</option>
+            </select>
+          </div>
+          <button type="submit" class="w-full bg-trulli-900 hover:bg-trulli-500 text-white font-medium py-3 rounded-lg transition-colors text-sm shadow-md">
+            Verifica Disponibilità
+          </button>
+        </form>
       </div>
     </div>
   </header>
 
-  <!-- Introduction -->
-  <section id="about" class="py-16 md:py-28">
+  <!-- Room & Property Inspector Section -->
+  <section class="py-20 bg-white">
     <div class="container mx-auto px-4">
-      <div class="max-w-4xl mx-auto text-center">
-        <span class="inline-block px-3 py-1 text-xs tracking-wider uppercase bg-trulli-200 text-trulli-500 mb-6">Benvenuti</span>
-        <h2 class="text-2xl md:text-4xl font-serif mb-6 leading-tight">
-          Comfort, tranquillità e natura
-        </h2>
-        <p class="text-base md:text-lg text-trulli-500 mb-8 leading-relaxed">
-          Situata vicino al Lago di Garda, la nostra villa offre un mix di architettura tradizionale e comfort moderno per la tua fuga italiana.
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12">
+        <div>
+          <span class="text-xs uppercase tracking-widest text-brand-gold font-semibold">Le Nostre Soluzioni</span>
+          <h2 class="text-3xl md:text-5xl font-serif mt-2">Ispeziona Camere & Struttura</h2>
+        </div>
+        <p class="text-trulli-500 max-w-md mt-4 md:mt-0">
+          Esplora gli spazi finemente arredati della villa e trova la sistemazione perfetta per il tuo soggiorno.
         </p>
-        <a href="about_it.html" class="inline-flex items-center text-trulli-900 hover:text-trulli-500 transition-colors duration-250">
-          <span class="mr-2 font-medium">Scopri la nostra storia</span>
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </div>
+
+      <!-- Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Room Card 1 -->
+        <div class="bg-trulli-100 rounded-2xl overflow-hidden shadow-sm hover-lift flex flex-col justify-between">
+          <div>
+            <div class="relative aspect-[4/3] overflow-hidden">
+              <img src="static/main35.jpg" alt="Camera Deluxe" class="w-full h-full object-cover">
+              <span class="absolute top-4 right-4 bg-white/90 backdrop-blur-md text-xs font-semibold px-3 py-1 rounded-full">Da €120 / notte</span>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-serif mb-2">Camera Deluxe Vista Giardino</h3>
+              <p class="text-trulli-500 text-sm mb-4">Letto king-size, bagno privato in marmo e vista panoramica sul verde.</p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="text-[11px] bg-white px-2.5 py-1 rounded-md border text-gray-600">WiFi Gratuito</span>
+                <span class="text-[11px] bg-white px-2.5 py-1 rounded-md border text-gray-600">Aria Condizionata</span>
+                <span class="text-[11px] bg-white px-2.5 py-1 rounded-md border text-gray-600">Smart TV</span>
+              </div>
+            </div>
+          </div>
+          <div class="px-6 pb-6 pt-0">
+            <button onclick="openModal('Camera Deluxe', 'Ampia stanza di 30mq dotata di letto king size, balcone affacciato sul giardino, minibar e doccia emozionale.')" class="w-full py-2.5 border border-trulli-900 text-trulli-900 hover:bg-trulli-900 hover:text-white transition-colors text-sm rounded-lg font-medium">
+              Ispeziona Dettagli
+            </button>
+          </div>
+        </div>
+
+        <!-- Room Card 2 -->
+        <div class="bg-trulli-100 rounded-2xl overflow-hidden shadow-sm hover-lift flex flex-col justify-between">
+          <div>
+            <div class="relative aspect-[4/3] overflow-hidden">
+              <img src="static/main31.jpg" alt="Suite Exclusive" class="w-full h-full object-cover">
+              <span class="absolute top-4 right-4 bg-white/90 backdrop-blur-md text-xs font-semibold px-3 py-1 rounded-full">Da €180 / notte</span>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-serif mb-2">Suite Exclusive Garda</h3>
+              <p class="text-trulli-500 text-sm mb-4">Zona giorno separata, finiture di pregio e terrazzo privato.</p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="text-[11px] bg-white px-2.5 py-1 rounded-md border text-gray-600">Terrazzo Privato</span>
+                <span class="text-[11px] bg-white px-2.5 py-1 rounded-md border text-gray-600">Idromassaggio</span>
+                <span class="text-[11px] bg-white px-2.5 py-1 rounded-md border text-gray-600">Colazione Inclusa</span>
+              </div>
+            </div>
+          </div>
+          <div class="px-6 pb-6 pt-0">
+            <button onclick="openModal('Suite Exclusive', 'La nostra sistemazione di punta con salotto dedicato, vasca idromassaggio integrata e terrazzo ad uso esclusivo.')" class="w-full py-2.5 border border-trulli-900 text-trulli-900 hover:bg-trulli-900 hover:text-white transition-colors text-sm rounded-lg font-medium">
+              Ispeziona Dettagli
+            </button>
+          </div>
+        </div>
+
+        <!-- Property Highlight Card -->
+        <div class="bg-trulli-100 rounded-2xl overflow-hidden shadow-sm hover-lift flex flex-col justify-between">
+          <div>
+            <div class="relative aspect-[4/3] overflow-hidden">
+              <img src="static/main33.jpg" alt="Piscina e Solarium" class="w-full h-full object-cover">
+              <span class="absolute top-4 right-4 bg-white/90 backdrop-blur-md text-xs font-semibold px-3 py-1 rounded-full">Spazi Comuni</span>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-serif mb-2">Piscina & Area Relax</h3>
+              <p class="text-trulli-500 text-sm mb-4">Piscina immersa negli olivi con lettini e zona lounge riservata agli ospiti.</p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="text-[11px] bg-white px-2.5 py-1 rounded-md border text-gray-600">Piscina All'aperto</span>
+                <span class="text-[11px] bg-white px-2.5 py-1 rounded-md border text-gray-600">Solarium</span>
+                <span class="text-[11px] bg-white px-2.5 py-1 rounded-md border text-gray-600">Parcheggio Privato</span>
+              </div>
+            </div>
+          </div>
+          <div class="px-6 pb-6 pt-0">
+            <button onclick="openModal('Piscina & Giardino', 'Un giardino mediterraneo con ulivi secolari e piscina riscaldata per i tuoi momenti di relax in totale privacy.')" class="w-full py-2.5 border border-trulli-900 text-trulli-900 hover:bg-trulli-900 hover:text-white transition-colors text-sm rounded-lg font-medium">
+              Ispeziona Struttura
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Quick Inspect Modal -->
+  <div id="inspectModal" class="fixed inset-0 bg-black/60 z-50 hidden backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl relative">
+      <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+      <h3 id="modalTitle" class="text-2xl font-serif mb-4 text-trulli-900"></h3>
+      <p id="modalDescription" class="text-trulli-500 text-sm leading-relaxed mb-6"></p>
+      <div class="flex gap-4">
+        <a id="modalBookBtn" href="booking_it.html" class="flex-1 text-center bg-trulli-900 text-white py-2.5 rounded-lg font-medium text-sm hover:bg-trulli-500 transition-colors">Prenota Ora</a>
+        <a href="https://wa.me/393518401998" target="_blank" class="flex items-center justify-center gap-2 border border-brand-whatsapp text-brand-whatsapp px-4 py-2.5 rounded-lg text-sm font-medium hover:bg-brand-whatsapp hover:text-white transition-colors">
+          Info WhatsApp
         </a>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- Features -->
-  <section class="py-16 md:py-28">
+  <!-- Gallery Section -->
+  <section id="gallery" class="py-20 bg-trulli-100">
     <div class="container mx-auto px-4">
-      <div class="space-y-16 md:space-y-32">
-        <!-- Feature 1 -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-16 items-center">
-          <div class="h-full overflow-hidden">
-            <div class="aspect-[4/3] w-full overflow-hidden">
-              <img src="static/main1.jpg" alt="Esperienza autentica" class="object-cover w-full h-full hover-lift transform transition-transform duration-[1.8s] hover:scale-105" />
-            </div>
-          </div>
-          <div class="flex flex-col justify-center">
-            <h2 class="text-2xl md:text-4xl font-serif mb-4">Villa Moderna</h2>
-            <p class="text-trulli-500 text-base md:text-lg leading-relaxed">
-              Ristrutturata con cura, la nostra villa preserva il suo fascino offrendo al contempo comfort moderni.
-            </p>
-          </div>
-        </div>
-        <!-- Feature 2 -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-16 items-center">
-          <div class="flex flex-col justify-center">
-            <h2 class="text-2xl md:text-4xl font-serif mb-4">Area Relax Giardino</h2>
-            <p class="text-trulli-500 text-base md:text-lg leading-relaxed">
-              Circondato da un bellissimo giardino con erbe aromatiche, goditi un rifugio sereno.
-            </p>
-          </div>
-          <div class="h-full overflow-hidden">
-            <div class="aspect-[4/3] w-full overflow-hidden">
-              <img src="static/main2.jpg" alt="Natura" class="object-cover w-full h-full hover-lift transform transition-transform duration-[1.8s] hover:scale-105" />
-            </div>
-          </div>
-        </div>
+      <div class="text-center mb-12 max-w-2xl mx-auto">
+        <h2 class="text-3xl md:text-5xl font-serif mb-4">Anteprima del tuo soggiorno</h2>
+        <p class="text-trulli-500">Scopri la bellezza degli ambienti e il relax che ti attende alla Nest Guesthouse.</p>
       </div>
-    </div>
-  </section>
-
-  <!-- Gallery -->
-  <section id="gallery" class="py-16 md:py-28 bg-trulli-100">
-    <div class="container mx-auto px-4">
-      <div class="text-center mb-12">
-        <h2 class="text-2xl md:text-4xl font-serif mb-4">Anteprima del tuo soggiorno</h2>
-        <p class="text-trulli-500 text-base md:text-lg max-w-2xl mx-auto">
-          Scopri la bellezza e il comfort della nostra villa italiana.
-        </p>
-      </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        <div class="overflow-hidden"><img src="static/main31.jpg" alt="Interni" class="w-full h-48 md:h-64 object-cover hover-lift transition-transform duration-[1.8s] hover:scale-105" /></div>
-        <div class="overflow-hidden"><img src="static/main32.jpg" alt="Esterni" class="w-full h-48 md:h-64 object-cover hover-lift transition-transform duration-[1.8s] hover:scale-105" /></div>
-        <div class="overflow-hidden"><img src="static/main33.jpg" alt="Piscina" class="w-full h-48 md:h-64 object-cover hover-lift transition-transform duration-[1.8s] hover:scale-105" /></div>
-        <div class="overflow-hidden"><img src="static/main34.jpg" alt="Sala da pranzo" class="w-full h-48 md:h-64 object-cover hover-lift transition-transform duration-[1.8s] hover:scale-105" /></div>
-        <div class="overflow-hidden"><img src="static/main35.jpg" alt="Camera da letto" class="w-full h-48 md:h-64 object-cover hover-lift transition-transform duration-[1.8s] hover:scale-105" /></div>
-        <div class="overflow-hidden"><img src="static/main36.jpg" alt="Giardino" class="w-full h-48 md:h-64 object-cover hover-lift transition-transform duration-[1.8s] hover:scale-105" /></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section id="book-now" class="py-16 md:py-28 relative">
-    <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1606046604972-77cc76aee944?q=80&w=2832&auto=format&fit=crop')] bg-cover bg-center opacity-20"></div>
-    <div class="absolute inset-0 bg-trulli-900/70"></div>
-    <div class="container mx-auto px-4 relative z-10">
-      <div class="max-w-3xl mx-auto text-center text-white">
-        <h2 class="text-2xl md:text-4xl font-serif mb-6">Inizia la tua esperienza sul Garda</h2>
-        <p class="text-white/80 text-base md:text-lg mb-8">Prenota il tuo soggiorno e immergiti nella cultura e nei paesaggi del Lago di Garda.</p>
-        <a href="booking_it.html" class="inline-block py-3 px-6 bg-white text-trulli-900 font-medium hover:bg-white/90 transition-colors">Prenota il tuo soggiorno</a>
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+        <div class="overflow-hidden rounded-xl shadow-sm"><img src="static/main31.jpg" alt="Interni" class="w-full h-48 md:h-64 object-cover hover-lift transition-transform duration-[1.8s] hover:scale-105" /></div>
+        <div class="overflow-hidden rounded-xl shadow-sm"><img src="static/main32.jpg" alt="Esterni" class="w-full h-48 md:h-64 object-cover hover-lift transition-transform duration-[1.8s] hover:scale-105" /></div>
+        <div class="overflow-hidden rounded-xl shadow-sm"><img src="static/main33.jpg" alt="Piscina" class="w-full h-48 md:h-64 object-cover hover-lift transition-transform duration-[1.8s] hover:scale-105" /></div>
+        <div class="overflow-hidden rounded-xl shadow-sm"><img src="static/main34.jpg" alt="Sala da pranzo" class="w-full h-48 md:h-64 object-cover hover-lift transition-transform duration-[1.8s] hover:scale-105" /></div>
+        <div class="overflow-hidden rounded-xl shadow-sm"><img src="static/main35.jpg" alt="Camera da letto" class="w-full h-48 md:h-64 object-cover hover-lift transition-transform duration-[1.8s] hover:scale-105" /></div>
+        <div class="overflow-hidden rounded-xl shadow-sm"><img src="static/main36.jpg" alt="Giardino" class="w-full h-48 md:h-64 object-cover hover-lift transition-transform duration-[1.8s] hover:scale-105" /></div>
       </div>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer id="contact" class="bg-trulli-900 text-white">
-    <div class="container mx-auto px-4 py-10">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div>
-          <h3 class="text-xl md:text-2xl font-serif mb-4">Nest Guesthouse</h3>
-          <p class="text-white/70 text-sm md:text-base mb-6">Vivi la magia del Lago di Garda nella nostra lussuosa villa.</p>
+  <footer id="contact" class="bg-trulli-900 text-white pt-16 pb-8">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+        <div class="md:col-span-2">
+          <h3 class="text-2xl font-serif mb-4">Nest Guesthouse</h3>
+          <p class="text-white/70 text-sm max-w-sm mb-6 leading-relaxed">Vivi la magia del Lago di Garda nella nostra lussuosa villa immersa nella tranquillità.</p>
         </div>
         <div>
-          <h4 class="text-base md:text-lg font-medium mb-4">Contatti</h4>
-          <address class="text-white/70 text-sm md:text-base not-italic">
-            <p class="mb-2">Via Magellano, 26</p>
-            <p class="mb-2">Castelnuovo del Garda, Verona, Italia</p>
-            <p class="mb-2">+39 3518401998</p>
-            <p>nestguesthouse2025@gmail.com</p>
+          <h4 class="text-base font-medium mb-4 uppercase tracking-wider text-white/50 text-xs">Contatti</h4>
+          <address class="text-white/70 text-sm not-italic space-y-2">
+            <p>Via Magellano, 26</p>
+            <p>Castelnuovo del Garda, VR, Italia</p>
+            <p><a href="tel:+393518401998" class="hover:text-white">+39 3518401998</a></p>
+            <p><a href="mailto:nestguesthouse2025@gmail.com" class="hover:text-white">nestguesthouse2025@gmail.com</a></p>
           </address>
         </div>
         <div>
-          <h4 class="text-base md:text-lg font-medium mb-4">Link</h4>
-          <ul class="space-y-2 text-white/70 text-sm md:text-base">
+          <h4 class="text-base font-medium mb-4 uppercase tracking-wider text-white/50 text-xs">Link Rapidi</h4>
+          <ul class="space-y-2 text-white/70 text-sm">
             <li><a href="about_it.html" class="hover:text-white transition-colors">Chi siamo</a></li>
             <li><a href="rooms_it.html" class="hover:text-white transition-colors">Camere</a></li>
             <li><a href="booking_it.html" class="hover:text-white transition-colors">Prenota</a></li>
@@ -253,18 +301,24 @@
           </ul>
         </div>
       </div>
-      <div class="border-t border-white/20 mt-8 pt-6 flex flex-col md:flex-row justify-between items-center">
-        <p class="text-white/70 text-sm">© 2025 Nest Guesthouse. Tutti i diritti riservati.</p>
+      <div class="border-t border-white/10 pt-6 flex flex-col md:flex-row justify-between items-center text-xs text-white/50">
+        <p>© 2026 Nest Guesthouse. Tutti i diritti riservati.</p>
       </div>
     </div>
   </footer>
 
-  <!-- JavaScript for Hamburger Menu -->
+  <!-- Scripts -->
   <script>
-    document.getElementById('menu-toggle').addEventListener('click', function() {
-      document.getElementById('menu').classList.toggle('hidden');
-    });
+    // Quick Inspect Modal Logic
+    function openModal(title, description) {
+      document.getElementById('modalTitle').innerText = title;
+      document.getElementById('modalDescription').innerText = description;
+      document.getElementById('inspectModal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('inspectModal').classList.add('hidden');
+    }
   </script>
-  <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
 </body>
 </html>
