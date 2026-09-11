@@ -346,12 +346,12 @@
         <!-- Room Card 1: Camera Limone -->
         <div class="bg-trulli-100 rounded-2xl overflow-hidden shadow-sm hover-lift flex flex-col justify-between">
           <div>
-            <div class="relative aspect-[4/3] overflow-hidden">
+            <div class="relative aspect-[4/3] overflow-hidden cursor-pointer" onclick="openRoomModal('limone')">
               <img src="limone_1.png" alt="Limone Room" class="w-full h-full object-cover">
               <span class="absolute top-4 right-4 bg-white/90 backdrop-blur-md text-xs font-semibold px-3 py-1 rounded-full">From €120 / night</span>
             </div>
             <div class="p-6">
-              <h3 class="text-xl font-serif mb-2">Limone Room</h3>
+              <h3 class="text-xl font-serif mb-2 cursor-pointer hover:text-brand-gold transition-colors" onclick="openRoomModal('limone')">Limone Room</h3>
               <p class="text-trulli-500 text-sm mb-4">Capacity: up to 5 guests. Private bathroom and panoramic balcony overlooking the villa's garden.</p>
               <div class="flex flex-wrap gap-2 mb-4">
                 <span class="text-[11px] bg-white px-2.5 py-1 rounded-md text-gray-600">King-Size Bed</span>
@@ -370,12 +370,12 @@
         <!-- Room Card 2: Camera Peschiera -->
         <div class="bg-trulli-100 rounded-2xl overflow-hidden shadow-sm hover-lift flex flex-col justify-between">
           <div>
-            <div class="relative aspect-[4/3] overflow-hidden">
+            <div class="relative aspect-[4/3] overflow-hidden cursor-pointer" onclick="openRoomModal('peschiera')">
               <img src="peschiera_1.png" alt="Peschiera Room" class="w-full h-full object-cover">
               <span class="absolute top-4 right-4 bg-white/90 backdrop-blur-md text-xs font-semibold px-3 py-1 rounded-full">From €150 / night</span>
             </div>
             <div class="p-6">
-              <h3 class="text-xl font-serif mb-2">Peschiera Room</h3>
+              <h3 class="text-xl font-serif mb-2 cursor-pointer hover:text-brand-gold transition-colors" onclick="openRoomModal('peschiera')">Peschiera Room</h3>
               <p class="text-trulli-500 text-sm mb-4">Capacity: up to 8 guests. Kitchen and terrace for exclusive use.</p>
               <div class="flex flex-wrap gap-2 mb-4">
                 <span class="text-[11px] bg-white px-2.5 py-1 rounded-md text-gray-600">Spacious Lounge</span>
@@ -394,12 +394,12 @@
         <!-- Room Card 3: Camera Riva -->
         <div class="bg-trulli-100 rounded-2xl overflow-hidden shadow-sm hover-lift flex flex-col justify-between">
           <div>
-            <div class="relative aspect-[4/3] overflow-hidden">
+            <div class="relative aspect-[4/3] overflow-hidden cursor-pointer" onclick="openRoomModal('riva')">
               <img src="riva_1.png" alt="Riva Room" class="w-full h-full object-cover">
               <span class="absolute top-4 right-4 bg-white/90 backdrop-blur-md text-xs font-semibold px-3 py-1 rounded-full">From €130 / night</span>
             </div>
             <div class="p-6">
-              <h3 class="text-xl font-serif mb-2">Riva Room</h3>
+              <h3 class="text-xl font-serif mb-2 cursor-pointer hover:text-brand-gold transition-colors" onclick="openRoomModal('riva')">Riva Room</h3>
               <p class="text-trulli-500 text-sm mb-4">Capacity: up to 4 guests. Private bathroom and balcony with park views.</p>
               <div class="flex flex-wrap gap-2 mb-4">
                 <span class="text-[11px] bg-white px-2.5 py-1 rounded-md text-gray-600">Scenic Balcony</span>
@@ -492,10 +492,223 @@
         <div class="overflow-hidden rounded-xl shadow-sm cursor-pointer" onclick="zoomImage('galleria_3.png')"><img src="galleria_3.png" alt="Villa Pool" class="w-full h-48 md:h-64 object-cover hover-lift transition-transform duration-[1.8s] hover:scale-105" /></div>
         <div class="overflow-hidden rounded-xl shadow-sm cursor-pointer" onclick="zoomImage('galleria_4.png')"><img src="galleria_4.png" alt="Equipped Kitchens" class="w-full h-48 md:h-64 object-cover hover-lift transition-transform duration-[1.8s] hover:scale-105" /></div>
         <div class="overflow-hidden rounded-xl shadow-sm cursor-pointer" onclick="zoomImage('galleria_5.JPG')"><img src="galleria_5.JPG" alt="Bedrooms" class="w-full h-48 md:h-64 object-cover hover-lift transition-transform duration-[1.8s] hover:scale-105" /></div>
-        <div class="overflow-hidden rounded-xl shadow-sm cursor-pointer" onclick="zoomImage('galleria_5.JPG')"><img src="galleria_6.JPG" alt="Bedrooms" class="w-full h-48 md:h-64 object-cover hover-lift transition-transform duration-[1.8s] hover:scale-105" /></div>
+        <div class="overflow-hidden rounded-xl shadow-sm cursor-pointer" onclick="zoomImage('galleria_6.JPG')"><img src="galleria_6.JPG" alt="Bedrooms" class="w-full h-48 md:h-64 object-cover hover-lift transition-transform duration-[1.8s] hover:scale-105" /></div>
       </div>
     </div>
   </section>
 
+  <!-- Dynamic Room Details Modal -->
+  <div id="roomModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white rounded-3xl max-w-3xl w-full overflow-hidden shadow-2xl my-8 relative flex flex-col max-h-[90vh]">
+      <button onclick="closeRoomModal()" class="absolute top-4 right-4 z-10 bg-white/80 backdrop-blur-md text-gray-800 hover:text-black w-10 h-10 rounded-full flex items-center justify-center shadow-lg transition-transform hover:scale-110">
+        ✕
+      </button>
+
+      <div class="p-6 md:p-8 overflow-y-auto space-y-6">
+        <div>
+          <span id="modalRoomCategory" class="text-xs font-semibold text-brand-gold uppercase tracking-wider">Accommodation</span>
+          <h3 id="modalRoomTitle" class="text-2xl md:text-4xl font-serif text-trulli-900 mt-1">Room Details</h3>
+          <p id="modalRoomPrice" class="text-lg font-medium text-trulli-500 mt-1"></p>
+        </div>
+
+        <!-- Main Modal Image & Thumbnails -->
+        <div class="space-y-3">
+          <div class="aspect-[16/9] rounded-2xl overflow-hidden bg-gray-100 shadow-inner">
+            <img id="modalMainImage" src="" alt="Room View" class="w-full h-full object-cover transition-all duration-300">
+          </div>
+          <div id="modalThumbnails" class="flex gap-2 overflow-x-auto pb-2">
+            <!-- Dynamic thumbnails via JavaScript -->
+          </div>
+        </div>
+
+        <div>
+          <h4 class="font-serif text-xl mb-2 text-trulli-900">Description</h4>
+          <p id="modalRoomDescription" class="text-trulli-500 text-sm leading-relaxed"></p>
+        </div>
+
+        <div>
+          <h4 class="font-serif text-xl mb-3 text-trulli-900">Amenities & Services</h4>
+          <ul id="modalRoomFeatures" class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-trulli-900">
+            <!-- Dynamic features via JavaScript -->
+          </ul>
+        </div>
+
+        <div class="pt-4 border-t border-gray-100 flex flex-col sm:flex-row gap-3">
+          <button onclick="selectRoomFromModal()" class="flex-1 bg-trulli-900 hover:bg-trulli-500 text-white font-medium py-3 rounded-xl transition-all text-xs text-center">
+            Select This Room & Book
+          </button>
+          <button onclick="closeRoomModal()" class="px-6 py-3 border border-gray-200 text-gray-600 hover:bg-gray-50 font-medium rounded-xl transition-all text-xs">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Image Zoom Modal -->
+  <div id="imageModal" class="fixed inset-0 bg-black/90 z-50 hidden flex items-center justify-center p-4" onclick="closeImageModal()">
+    <button onclick="closeImageModal()" class="absolute top-4 right-4 text-white text-3xl font-bold bg-white/10 w-12 h-12 rounded-full flex items-center justify-center hover:bg-white/20 transition-all">✕</button>
+    <img id="zoomedImage" src="" alt="Zoomed View" class="max-w-full max-h-[90vh] rounded-2xl object-contain shadow-2xl">
+  </div>
+
+  <script>
+    const roomData = {
+      limone: {
+        title: "Limone Room",
+        price: "From €120 / night",
+        category: "Room for up to 5 guests",
+        description: "Limone Room is a spacious and bright accommodation ideal for families or group stays. It features a plush king-size bed, additional seating/bedding, and direct access to a panoramic balcony with lovely views over the villa's Mediterranean garden. Comes with private bathroom and kitchen access.",
+        images: ["limone_1.png", "limone_2.png", "limone_3.png", "limone_4.png"],
+        features: [
+          "✓ Up to 5 Guests",
+          "✓ Private Bathroom",
+          "✓ Panoramic Balcony",
+          "✓ Wi-Fi & Air Conditioning",
+          "✓ Equipped Kitchen Access",
+          "✓ Pets Allowed"
+        ],
+        selectValue: "Limone Room (Up to 5 guests)"
+      },
+      peschiera: {
+        title: "Peschiera Room",
+        price: "From €150 / night",
+        category: "Exclusive Suite / Accommodation for up to 8 guests",
+        description: "Peschiera Room is our most comprehensive solution for larger groups or families seeking maximum privacy and independence. Accommodating up to 8 guests, it offers a large living room, an exclusive fully equipped kitchen, and a private terrace for outdoor dining.",
+        images: ["peschiera_1.png", "peschiera_2.png", "peschiera_3.png"],
+        features: [
+          "✓ Up to 8 Guests",
+          "✓ Exclusive Private Kitchen",
+          "✓ Furnished Private Terrace",
+          "✓ Spacious Bright Lounge",
+          "✓ Private Bathroom",
+          "✓ Pets Welcome"
+        ],
+        selectValue: "Peschiera Room (Up to 8 guests)"
+      },
+      riva: {
+        title: "Riva Room",
+        price: "From €130 / night",
+        category: "Comfort Room for up to 4 guests",
+        description: "Riva Room combines elegance and comfort. Perfect for couples or small families, it offers a private bathroom, a dedicated scenic balcony overlooking the park, and access to all villa amenities including the fully equipped kitchen.",
+        images: ["riva_1.png", "riva_2.png", "riva_3.png"],
+        features: [
+          "✓ Up to 4 Guests",
+          "✓ Private Bathroom",
+          "✓ Private Balcony",
+          "✓ High-Speed Wi-Fi",
+          "✓ Shared Kitchen Access",
+          "✓ Pet-Friendly"
+        ],
+        selectValue: "Riva Room (Up to 4 guests)"
+      }
+    };
+
+    let activeRoomKey = null;
+
+    function openRoomModal(key) {
+      const room = roomData[key];
+      if (!room) return;
+      activeRoomKey = key;
+
+      document.getElementById('modalRoomTitle').innerText = room.title;
+      document.getElementById('modalRoomPrice').innerText = room.price;
+      document.getElementById('modalRoomCategory').innerText = room.category;
+      document.getElementById('modalRoomDescription').innerText = room.description;
+      document.getElementById('modalMainImage').src = room.images[0];
+
+      const thumbsContainer = document.getElementById('modalThumbnails');
+      thumbsContainer.innerHTML = '';
+      room.images.forEach((imgSrc, idx) => {
+        const thumb = document.createElement('img');
+        thumb.src = imgSrc;
+        thumb.className = `w-20 h-16 object-cover rounded-xl cursor-pointer border-2 transition-all ${idx === 0 ? 'border-trulli-900 scale-95' : 'border-transparent opacity-70 hover:opacity-100'}`;
+        thumb.onclick = () => {
+          document.getElementById('modalMainImage').src = imgSrc;
+          Array.from(thumbsContainer.children).forEach(c => {
+            c.classList.remove('border-trulli-900', 'scale-95');
+            c.classList.add('border-transparent', 'opacity-70');
+          });
+          thumb.classList.add('border-trulli-900', 'scale-95');
+          thumb.classList.remove('border-transparent', 'opacity-70');
+        };
+        thumbsContainer.appendChild(thumb);
+      });
+
+      const featuresContainer = document.getElementById('modalRoomFeatures');
+      featuresContainer.innerHTML = '';
+      room.features.forEach(feat => {
+        const li = document.createElement('li');
+        li.className = 'bg-trulli-100 p-2.5 rounded-lg border border-gray-100 font-medium';
+        li.innerText = feat;
+        featuresContainer.appendChild(li);
+      });
+
+      document.getElementById('roomModal').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeRoomModal() {
+      document.getElementById('roomModal').classList.add('hidden');
+      document.body.style.overflow = 'auto';
+    }
+
+    function selectRoomFromModal() {
+      if (activeRoomKey && roomData[activeRoomKey]) {
+        const selectElem = document.getElementById('roomSelect');
+        if (selectElem) {
+          selectElem.value = roomData[activeRoomKey].selectValue;
+        }
+      }
+      closeRoomModal();
+      document.getElementById('prenota').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function zoomImage(src) {
+      document.getElementById('zoomedImage').src = src;
+      document.getElementById('imageModal').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeImageModal() {
+      document.getElementById('imageModal').classList.add('hidden');
+      document.body.style.overflow = 'auto';
+    }
+
+    function sendWhatsAppBooking() {
+      const checkin = document.getElementById('checkin').value;
+      const checkout = document.getElementById('checkout').value;
+      const room = document.getElementById('roomSelect').value;
+      const adults = document.getElementById('adults').value;
+      const kids = document.getElementById('kids').value;
+      const pets = document.getElementById('pets').value;
+
+      if (!checkin || !checkout) {
+        alert('Please select check-in and check-out dates.');
+        return;
+      }
+
+      const text = `Hello Nest Guesthouse! I would like to check availability:%0A%0A- Check-in: ${checkin}%0A- Check-out: ${checkout}%0A- Room: ${room}%0A- Guests: ${adults}, ${kids}%0A- Pets: ${pets}`;
+      window.open(`https://wa.me/393518401998?text=${text}`, '_blank');
+    }
+
+    function sendEmailBooking() {
+      const checkin = document.getElementById('checkin').value;
+      const checkout = document.getElementById('checkout').value;
+      const room = document.getElementById('roomSelect').value;
+      const adults = document.getElementById('adults').value;
+      const kids = document.getElementById('kids').value;
+      const pets = document.getElementById('pets').value;
+
+      if (!checkin || !checkout) {
+        alert('Please select check-in and check-out dates.');
+        return;
+      }
+
+      const subject = encodeURIComponent('Booking Inquiry - Nest Guesthouse');
+      const body = encodeURIComponent(`Hello Nest Guesthouse,\n\nI would like to inquire about availability for the following stay:\n\n- Check-in: ${checkin}\n- Check-out: ${checkout}\n- Desired Room: ${room}\n- Adults: ${adults}\n- Children: ${kids}\n- Pets: ${pets}\n\nThank you!`);
+
+      window.location.href = `mailto:nestguesthouseitaly@gmail.com?subject=${subject}&body=${body}`;
+    }
+  </script>
 </body>
 </html>
