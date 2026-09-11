@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nest Guesthouse - Villa near Lake Garda & Gardaland</title>
-  <meta name="description" content="Stay at an elegant Italian villa in Castelnuovo del Garda. Refined rooms, spacious Mediterranean garden, fully equipped kitchens, very close to Gardaland and Lake Garda." />
-  <meta name="keywords" content="nestguesthouse, lake garda, gardaland, castelnuovo del garda, villa italy, b&b, guesthouse verona, pet friendly">
+  <meta name="description" content="Stay at an elegant Italian villa in Castelnuovo del Garda. Refined rooms, large Mediterranean garden, fully equipped kitchens, very close to Gardaland and Lake Garda." />
+  <meta name="keywords" content="nestguesthouse, lake garda, gardaland, castelnuovo del garda, villa italy, b&b, verona guesthouse, pet friendly">
   <meta name="google-site-verification" content="google1a3b92520ca0929d" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
   <link rel="icon" href="static/nest_logo copy.jpeg" type="image/jpeg">
@@ -34,6 +34,20 @@
         window.location.href = 'index_de.html';
       }
     }
+
+    function toggleLangDropdown(event) {
+      event.stopPropagation();
+      const menu = document.getElementById('langDropdownMenu');
+      menu.classList.toggle('hidden');
+    }
+
+    document.addEventListener('click', function(event) {
+      const menu = document.getElementById('langDropdownMenu');
+      const btn = document.getElementById('langDropdownBtn');
+      if (menu && !menu.classList.contains('hidden') && !btn.contains(event.target) && !menu.contains(event.target)) {
+        menu.classList.add('hidden');
+      }
+    });
   </script>
 
   <script>
@@ -86,7 +100,7 @@
 <body class="relative min-h-screen flex flex-col justify-between">
 
   <!-- Floating WhatsApp Button -->
-  <a href="https://wa.me/393518401998?text=Hello%20Nest%20Guesthouse,%20I%20would%20like%20to%20inquire%20about%20a%20booking." 
+  <a href="https://wa.me/393518401998?text=Hello%20Nest%20Guesthouse,%20I%20would%20like%20information%20for%20a%20booking." 
      target="_blank" 
      rel="noopener noreferrer" 
      aria-label="Chat on WhatsApp"
@@ -110,34 +124,34 @@
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
         </label>
         <a href="#about" class="text-trulli-900 hover:text-brand-gold font-medium transition-colors">About Us</a>
-        <a href="#camere" class="text-trulli-900 hover:text-brand-gold font-medium transition-colors">Rooms & Amenities</a>
+        <a href="#camere" class="text-trulli-900 hover:text-brand-gold font-medium transition-colors">Rooms & Services</a>
         <a href="#prenota" class="text-trulli-900 hover:text-brand-gold font-medium transition-colors">Book Now</a>
         <a href="#mappa" class="text-trulli-900 hover:text-brand-gold font-medium transition-colors">Gardaland & Location</a>
         
-        <!-- Language Menu -->
-        <div class="relative group border-l pl-4 border-gray-200">
-          <button class="flex items-center gap-1.5 text-sm font-semibold text-trulli-900 hover:text-brand-gold transition-colors py-1">
-            <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <!-- Clickable Language Selection Dropdown -->
+        <div class="relative inline-block text-left">
+          <button id="langDropdownBtn" onclick="toggleLangDropdown(event)" type="button" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-200 bg-gray-50 text-xs font-semibold text-trulli-900 hover:bg-gray-100 transition-colors">
+            <svg class="w-4 h-4 text-brand-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m-9 9a9 9 0 019-9"/>
             </svg>
-            <span>EN</span>
-            <svg class="w-3.5 h-3.5 text-gray-400 group-hover:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <span>🇬🇧 EN</span>
+            <svg class="w-3 h-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
             </svg>
           </button>
           
-          <div class="absolute right-0 mt-1 w-32 bg-white rounded-xl shadow-xl border border-gray-100 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all duration-200 z-50 overflow-hidden">
-            <button onclick="changeLanguage('it')" class="w-full text-left px-4 py-2.5 text-xs font-medium hover:bg-trulli-100 flex items-center justify-between text-trulli-900">
-              <span>Italiano</span>
-              <span class="text-gray-400">IT</span>
+          <div id="langDropdownMenu" class="hidden absolute right-0 mt-2 w-36 bg-white rounded-2xl shadow-xl border border-gray-100 py-1.5 z-50 overflow-hidden">
+            <button onclick="changeLanguage('en')" class="w-full text-left px-4 py-2 text-xs font-medium hover:bg-trulli-100 flex items-center justify-between text-trulli-900">
+              <span>🇬🇧 English</span>
+              <span class="text-gray-400 font-mono">EN</span>
             </button>
-            <button onclick="changeLanguage('en')" class="w-full text-left px-4 py-2.5 text-xs font-medium hover:bg-trulli-100 flex items-center justify-between text-trulli-900 border-t border-gray-50">
-              <span>English</span>
-              <span class="text-gray-400">EN</span>
+            <button onclick="changeLanguage('it')" class="w-full text-left px-4 py-2 text-xs font-medium hover:bg-trulli-100 flex items-center justify-between text-trulli-900 border-t border-gray-50">
+              <span>🇮🇹 Italiano</span>
+              <span class="text-gray-400 font-mono">IT</span>
             </button>
-            <button onclick="changeLanguage('de')" class="w-full text-left px-4 py-2.5 text-xs font-medium hover:bg-trulli-100 flex items-center justify-between text-trulli-900 border-t border-gray-50">
-              <span>Deutsch</span>
-              <span class="text-gray-400">DE</span>
+            <button onclick="changeLanguage('de')" class="w-full text-left px-4 py-2 text-xs font-medium hover:bg-trulli-100 flex items-center justify-between text-trulli-900 border-t border-gray-50">
+              <span>🇩🇪 Deutsch</span>
+              <span class="text-gray-400 font-mono">DE</span>
             </button>
           </div>
         </div>
@@ -163,7 +177,7 @@
     <div class="relative container mx-auto px-4 py-20 text-center text-white z-10 flex flex-col items-center">
       <span class="text-xs uppercase tracking-widest bg-white/20 backdrop-blur-md px-4 py-1.5 rounded-full mb-4 font-semibold">Castelnuovo del Garda • Verona</span>
       <h1 class="text-4xl md:text-6xl lg:text-7xl font-serif mb-6 leading-tight max-w-4xl">
-        Holiday Home near Gardaland & Lake Garda! 
+        Holiday Villa near Gardaland & Lake Garda!
       </h1>
     </div>
   </header>
@@ -175,7 +189,7 @@
         <div>
           <div class="flex items-center gap-2 text-brand-gold font-semibold text-xs uppercase tracking-wider mb-1">
             <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-            Instant Quote & Availability
+            Instant Quote & Availability Check
           </div>
           <h2 class="text-2xl font-serif text-trulli-900">Check Availability for Your Stay</h2>
         </div>
@@ -193,12 +207,12 @@
             <input type="date" id="checkout" required class="w-full px-3 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-xs font-medium focus:outline-none focus:ring-2 focus:ring-trulli-900">
           </div>
           <div>
-            <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Desired Room</label>
+            <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Preferred Room</label>
             <select id="roomSelect" class="w-full px-3 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-xs font-medium focus:outline-none focus:ring-2 focus:ring-trulli-900">
               <option value="All accommodations / No preference" selected>No preference</option>
-              <option value="Limone Room (Up to 5 guests)">Limone Room</option>
-              <option value="Peschiera Room (Up to 8 guests)">Peschiera Room</option>
-              <option value="Riva Room (Up to 4 guests)">Riva Room</option>
+              <option value="Limone Room (Up to 5 guests)">Limone Room (Up to 5 guests)</option>
+              <option value="Peschiera Room (Up to 8 guests)">Peschiera Room (Up to 8 guests)</option>
+              <option value="Riva Room (Up to 4 guests)">Riva Room (Up to 4 guests)</option>
             </select>
           </div>
           <div>
@@ -234,14 +248,14 @@
         <div class="flex flex-col sm:flex-row gap-3 pt-2">
           <button type="button" onclick="sendWhatsAppBooking()" class="flex-1 bg-brand-whatsapp hover:bg-emerald-600 text-white font-medium py-3 rounded-xl transition-all text-xs shadow-md hover:shadow-lg flex items-center justify-center gap-2 h-[46px]">
             <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.572-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-            Request via WhatsApp
+            Inquire via WhatsApp
           </button>
           
           <button type="button" onclick="sendEmailBooking()" class="flex-1 bg-trulli-900 hover:bg-trulli-500 text-white font-medium py-3 rounded-xl transition-all text-xs shadow-md hover:shadow-lg flex items-center justify-center gap-2 h-[46px]">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 002-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
             </svg>
-            Request via Email
+            Inquire via Email
           </button>
         </div>
       </form>
@@ -256,20 +270,20 @@
           <span class="text-xs uppercase tracking-widest text-brand-gold font-semibold">Welcome to Nest Guesthouse</span>
           <h2 class="text-3xl md:text-5xl font-serif mt-2 mb-6">An Elegant Oasis Between Garda & Verona</h2>
           <p class="text-trulli-500 leading-relaxed mb-4">
-            Nest Guesthouse was born from the desire to offer an authentic, relaxing, and private stay in the heart of Castelnuovo del Garda. Set in a stunning Italian villa surrounded by lush greenery, our guesthouse combines the warm, welcoming feel of a private home with modern hospitality amenities.
+            Nest Guesthouse was born from the desire to offer an authentic, relaxing, and private stay in the heart of Castelnuovo del Garda. Set in a beautiful Italian villa surrounded by greenery, our guesthouse combines the warm, welcoming atmosphere of a private home with modern hospitality comforts.
           </p>
           <p class="text-trulli-500 leading-relaxed mb-6">
-            Whether you are planning a family trip to <strong>Gardaland</strong>, a romantic getaway to Lake Garda, or a relaxing stay with your four-legged friends, Nest Guesthouse is the ideal starting point. We offer spacious, elegantly furnished rooms, private or shared kitchens, and a lush Mediterranean garden with a relaxing lounge area.
+            Whether you are planning a family trip to <strong>Gardaland</strong>, a romantic getaway on Lake Garda, or a relaxing stay with your four-legged friends, Nest Guesthouse is the ideal starting point. We offer spacious, elegantly furnished rooms, private or shared kitchens, and a lush Mediterranean garden with a relaxation lounge area.
           </p>
           <div class="flex items-center gap-6">
             <div>
               <p class="text-2xl font-serif text-trulli-900 font-semibold">5 Min</p>
-              <p class="text-xs text-gray-500 uppercase tracking-wider">From Gardaland</p>
+              <p class="text-xs text-gray-500 uppercase tracking-wider">To Gardaland</p>
             </div>
             <div class="border-l border-gray-200 h-10"></div>
             <div>
               <p class="text-2xl font-serif text-trulli-900 font-semibold">20 Min</p>
-              <p class="text-xs text-gray-500 uppercase tracking-wider">From Verona</p>
+              <p class="text-xs text-gray-500 uppercase tracking-wider">To Verona</p>
             </div>
             <div class="border-l border-gray-200 h-10"></div>
             <div>
@@ -290,7 +304,7 @@
   <section class="py-12 bg-trulli-100">
     <div class="container mx-auto px-4">
       <div class="text-center mb-12 max-w-3xl mx-auto">
-        <span class="text-xs uppercase tracking-widest text-brand-gold font-semibold">Highlights</span>
+        <span class="text-xs uppercase tracking-widest text-brand-gold font-semibold">Our Key Highlights</span>
         <h2 class="text-3xl md:text-5xl font-serif mt-2">Home Comforts in the Magic of the Lake</h2>
       </div>
 
@@ -311,7 +325,7 @@
           </div>
           <h3 class="text-xl font-serif mb-3">Large Garden & Kitchens</h3>
           <p class="text-trulli-500 text-sm leading-relaxed">
-            Enjoy a lush Mediterranean garden and convenient fully equipped kitchens available to guests for complete independence.
+            Enjoy a lush Mediterranean garden and fully equipped kitchens available for guests' maximum independence.
           </p>
         </div>
 
@@ -321,7 +335,7 @@
           </div>
           <h3 class="text-xl font-serif mb-3">Pet-Friendly Welcome</h3>
           <p class="text-trulli-500 text-sm leading-relaxed">
-            Pets are welcome! Your four-legged friends can enjoy the holiday with you in complete safety.
+            Pets are warmly welcome! Your four-legged companions can enjoy the holiday right along with you in full safety.
           </p>
         </div>
       </div>
@@ -333,11 +347,11 @@
     <div class="container mx-auto px-4">
       <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12">
         <div>
-          <span class="text-xs uppercase tracking-widest text-brand-gold font-semibold">Our Rooms</span>
-          <h2 class="text-3xl md:text-5xl font-serif mt-2">Accommodations & Common Areas</h2>
+          <span class="text-xs uppercase tracking-widest text-brand-gold font-semibold">Our Accommodations</span>
+          <h2 class="text-3xl md:text-5xl font-serif mt-2">Rooms & Common Spaces</h2>
         </div>
         <p class="text-trulli-500 max-w-md mt-4 md:mt-0">
-          Bright, beautifully decorated rooms with access to gardens, terraces, and an equipped kitchen.
+          Bright and finely decorated rooms with access to gardens, terraces, and fully equipped kitchens.
         </p>
       </div>
 
@@ -352,7 +366,7 @@
             </div>
             <div class="p-6">
               <h3 class="text-xl font-serif mb-2 cursor-pointer hover:text-brand-gold transition-colors" onclick="openRoomModal('limone')">Limone Room</h3>
-              <p class="text-trulli-500 text-sm mb-4">Capacity: up to 5 guests. Private bathroom and panoramic balcony overlooking the villa's garden.</p>
+              <p class="text-trulli-500 text-sm mb-4">Capacity: up to 5 guests. Private bathroom and scenic balcony overlooking the villa's garden.</p>
               <div class="flex flex-wrap gap-2 mb-4">
                 <span class="text-[11px] bg-white px-2.5 py-1 rounded-md text-gray-600">King-Size Bed</span>
                 <span class="text-[11px] bg-white px-2.5 py-1 rounded-md text-gray-600">Pet Friendly</span>
@@ -378,7 +392,7 @@
               <h3 class="text-xl font-serif mb-2 cursor-pointer hover:text-brand-gold transition-colors" onclick="openRoomModal('peschiera')">Peschiera Room</h3>
               <p class="text-trulli-500 text-sm mb-4">Capacity: up to 8 guests. Kitchen and terrace for exclusive use.</p>
               <div class="flex flex-wrap gap-2 mb-4">
-                <span class="text-[11px] bg-white px-2.5 py-1 rounded-md text-gray-600">Spacious Lounge</span>
+                <span class="text-[11px] bg-white px-2.5 py-1 rounded-md text-gray-600">Spacious Lounge Area</span>
                 <span class="text-[11px] bg-white px-2.5 py-1 rounded-md text-gray-600">Pet Friendly</span>
                 <span class="text-[11px] bg-white px-2.5 py-1 rounded-md text-gray-600">Equipped Kitchen</span>
               </div>
@@ -400,9 +414,9 @@
             </div>
             <div class="p-6">
               <h3 class="text-xl font-serif mb-2 cursor-pointer hover:text-brand-gold transition-colors" onclick="openRoomModal('riva')">Riva Room</h3>
-              <p class="text-trulli-500 text-sm mb-4">Capacity: up to 4 guests. Private bathroom and balcony with park views.</p>
+              <p class="text-trulli-500 text-sm mb-4">Capacity: up to 4 guests. Private bathroom and balcony overlooking the park.</p>
               <div class="flex flex-wrap gap-2 mb-4">
-                <span class="text-[11px] bg-white px-2.5 py-1 rounded-md text-gray-600">Scenic Balcony</span>
+                <span class="text-[11px] bg-white px-2.5 py-1 rounded-md text-gray-600">Panoramic Balcony</span>
                 <span class="text-[11px] bg-white px-2.5 py-1 rounded-md text-gray-600">Kitchen Access</span>
                 <span class="text-[11px] bg-white px-2.5 py-1 rounded-md text-gray-600">Pet-Friendly</span>
               </div>
@@ -424,12 +438,12 @@
       <div class="text-center mb-12 max-w-2xl mx-auto">
         <span class="text-xs uppercase tracking-widest text-brand-gold font-semibold">Strategic Location</span>
         <h2 class="text-3xl md:text-5xl font-serif mt-2 mb-4">Where We Are & Gardaland</h2>
-        <p class="text-trulli-500">We are located in Castelnuovo del Garda, just a few minutes drive from main theme parks and Lake Garda beaches.</p>
+        <p class="text-trulli-500">Located in Castelnuovo del Garda, just minutes by car from major theme parks and the beaches of Lake Garda.</p>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center bg-white p-6 md:p-8 rounded-3xl shadow-sm border border-gray-100">
         <div class="lg:col-span-2 overflow-hidden rounded-2xl shadow-inner h-96">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2799.7411883434775!2d10.7576413!3d45.4347183!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4781e88aad346401%3A0x86821ead9549960f!2sVia%20Magellano%2C%2026%2C%2037014%20Castelnuovo%20del%20Garda%20VR!5e0!3m2!1sen!2sit!4v1789129273847!5m2!1sen!2sit" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2799.7411883434775!2d10.7576413!3d45.4347183!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4781e88aad346401%3A0x86821ead9549960f!2sVia%20Magellano%2C%2026%2C%2037014%20Castelnuovo%20del%20Garda%20VR!5e0!3m2!1sen!2sit!4v1789129273847!5m2!1sen!2sit" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
         </div>
 
         <div class="space-y-6">
@@ -441,7 +455,7 @@
             </div>
             <div>
               <h4 class="font-semibold text-trulli-900">Gardaland Resort</h4>
-              <p class="text-xs text-trulli-500">Just 3 km away (5 minutes drive)</p>
+              <p class="text-xs text-trulli-500">Only 3 km away (5 minutes by car)</p>
             </div>
           </div>
 
@@ -451,7 +465,7 @@
             </div>
             <div>
               <h4 class="font-semibold text-trulli-900">Peschiera del Garda & Beaches</h4>
-              <p class="text-xs text-trulli-500">Just 4 km away (7 minutes drive)</p>
+              <p class="text-xs text-trulli-500">Only 4 km away (7 minutes by car)</p>
             </div>
           </div>
 
@@ -461,7 +475,7 @@
             </div>
             <div>
               <h4 class="font-semibold text-trulli-900">Parco Natura Viva & Zoo</h4>
-              <p class="text-xs text-trulli-500">8 km away (10 minutes drive)</p>
+              <p class="text-xs text-trulli-500">8 km away (10 minutes by car)</p>
             </div>
           </div>
 
@@ -470,8 +484,8 @@
               🏛️
             </div>
             <div>
-              <h4 class="font-semibold text-trulli-900">Verona City Center & Arena</h4>
-              <p class="text-xs text-trulli-500">Approx. 20 km away (20 minutes drive)</p>
+              <h4 class="font-semibold text-trulli-900">Verona Historic Center & Arena</h4>
+              <p class="text-xs text-trulli-500">Approx. 20 km away (20 minutes by car)</p>
             </div>
           </div>
         </div>
@@ -483,72 +497,35 @@
   <section id="gallery" class="py-20 bg-white">
     <div class="container mx-auto px-4">
       <div class="text-center mb-12 max-w-2xl mx-auto">
-        <h2 class="text-3xl md:text-5xl font-serif mb-4">House Gallery</h2>
-        <p class="text-trulli-500">Discover the ambiance, garden, and rooms of our Guesthouse.</p>
+        <h2 class="text-3xl md:text-5xl font-serif mb-4">Property Gallery</h2>
+        <p class="text-trulli-500">Discover the atmosphere, garden, and rooms of our Guesthouse.</p>
       </div>
       <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
         <div class="overflow-hidden rounded-xl shadow-sm cursor-pointer" onclick="zoomImage('galleria_1.png')"><img src="galleria_1.png" alt="Villa Interior" class="w-full h-48 md:h-64 object-cover hover-lift transition-transform duration-[1.8s] hover:scale-105" /></div>
-        <div class="overflow-hidden rounded-xl shadow-sm cursor-pointer" onclick="zoomImage('galleria_2.png')"><img src="galleria_2.png" alt="Outdoors and Garden" class="w-full h-48 md:h-64 object-cover hover-lift transition-transform duration-[1.8s] hover:scale-105" /></div>
+        <div class="overflow-hidden rounded-xl shadow-sm cursor-pointer" onclick="zoomImage('galleria_2.png')"><img src="galleria_2.png" alt="Exterior & Garden" class="w-full h-48 md:h-64 object-cover hover-lift transition-transform duration-[1.8s] hover:scale-105" /></div>
         <div class="overflow-hidden rounded-xl shadow-sm cursor-pointer" onclick="zoomImage('galleria_3.png')"><img src="galleria_3.png" alt="Villa Pool" class="w-full h-48 md:h-64 object-cover hover-lift transition-transform duration-[1.8s] hover:scale-105" /></div>
         <div class="overflow-hidden rounded-xl shadow-sm cursor-pointer" onclick="zoomImage('galleria_4.png')"><img src="galleria_4.png" alt="Equipped Kitchens" class="w-full h-48 md:h-64 object-cover hover-lift transition-transform duration-[1.8s] hover:scale-105" /></div>
-        <div class="overflow-hidden rounded-xl shadow-sm cursor-pointer" onclick="zoomImage('galleria_5.JPG')"><img src="galleria_5.JPG" alt="Bedrooms" class="w-full h-48 md:h-64 object-cover hover-lift transition-transform duration-[1.8s] hover:scale-105" /></div>
-        <div class="overflow-hidden rounded-xl shadow-sm cursor-pointer" onclick="zoomImage('galleria_6.JPG')"><img src="galleria_6.JPG" alt="Bedrooms" class="w-full h-48 md:h-64 object-cover hover-lift transition-transform duration-[1.8s] hover:scale-105" /></div>
+        <div class="overflow-hidden rounded-xl shadow-sm cursor-pointer" onclick="zoomImage('galleria_5.JPG')"><img src="galleria_5.JPG" alt="Nest Guesthouse Gallery" class="w-full h-48 md:h-64 object-cover hover-lift transition-transform duration-[1.8s] hover:scale-105" /></div>
       </div>
     </div>
   </section>
 
-  <!-- Dynamic Room Details Modal -->
-  <div id="roomModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
-    <div class="bg-white rounded-3xl max-w-3xl w-full overflow-hidden shadow-2xl my-8 relative flex flex-col max-h-[90vh]">
-      <button onclick="closeRoomModal()" class="absolute top-4 right-4 z-10 bg-white/80 backdrop-blur-md text-gray-800 hover:text-black w-10 h-10 rounded-full flex items-center justify-center shadow-lg transition-transform hover:scale-110">
-        ✕
+  <!-- Room Details Modal -->
+  <div id="roomModal" class="fixed inset-0 bg-black/80 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm overflow-y-auto">
+    <div class="bg-white rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto relative p-6 md:p-8 shadow-2xl">
+      <button onclick="closeRoomModal()" class="absolute top-4 right-4 bg-gray-100 hover:bg-gray-200 text-gray-800 rounded-full p-2 transition-colors">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
       </button>
 
-      <div class="p-6 md:p-8 overflow-y-auto space-y-6">
-        <div>
-          <span id="modalRoomCategory" class="text-xs font-semibold text-brand-gold uppercase tracking-wider">Accommodation</span>
-          <h3 id="modalRoomTitle" class="text-2xl md:text-4xl font-serif text-trulli-900 mt-1">Room Details</h3>
-          <p id="modalRoomPrice" class="text-lg font-medium text-trulli-500 mt-1"></p>
-        </div>
-
-        <!-- Main Modal Image & Thumbnails -->
-        <div class="space-y-3">
-          <div class="aspect-[16/9] rounded-2xl overflow-hidden bg-gray-100 shadow-inner">
-            <img id="modalMainImage" src="" alt="Room View" class="w-full h-full object-cover transition-all duration-300">
-          </div>
-          <div id="modalThumbnails" class="flex gap-2 overflow-x-auto pb-2">
-            <!-- Dynamic thumbnails via JavaScript -->
-          </div>
-        </div>
-
-        <div>
-          <h4 class="font-serif text-xl mb-2 text-trulli-900">Description</h4>
-          <p id="modalRoomDescription" class="text-trulli-500 text-sm leading-relaxed"></p>
-        </div>
-
-        <div>
-          <h4 class="font-serif text-xl mb-3 text-trulli-900">Amenities & Services</h4>
-          <ul id="modalRoomFeatures" class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-trulli-900">
-            <!-- Dynamic features via JavaScript -->
-          </ul>
-        </div>
-
-        <div class="pt-4 border-t border-gray-100 flex flex-col sm:flex-row gap-3">
-          <button onclick="selectRoomFromModal()" class="flex-1 bg-trulli-900 hover:bg-trulli-500 text-white font-medium py-3 rounded-xl transition-all text-xs text-center">
-            Select This Room & Book
-          </button>
-          <button onclick="closeRoomModal()" class="px-6 py-3 border border-gray-200 text-gray-600 hover:bg-gray-50 font-medium rounded-xl transition-all text-xs">
-            Close
-          </button>
-        </div>
+      <div id="modalContent">
+        <!-- Dynamic room content loaded via JS -->
       </div>
     </div>
   </div>
 
   <!-- Image Zoom Modal -->
-  <div id="imageModal" class="fixed inset-0 bg-black/90 z-50 hidden flex items-center justify-center p-4" onclick="closeImageModal()">
-    <button onclick="closeImageModal()" class="absolute top-4 right-4 text-white text-3xl font-bold bg-white/10 w-12 h-12 rounded-full flex items-center justify-center hover:bg-white/20 transition-all">✕</button>
-    <img id="zoomedImage" src="" alt="Zoomed View" class="max-w-full max-h-[90vh] rounded-2xl object-contain shadow-2xl">
+  <div id="imageModal" class="fixed inset-0 bg-black/90 z-50 hidden flex items-center justify-center p-4 cursor-pointer" onclick="closeImageModal()">
+    <img id="zoomedImage" src="" alt="Zoom" class="max-w-full max-h-[90vh] rounded-xl object-contain shadow-2xl">
   </div>
 
   <script>
@@ -556,122 +533,69 @@
       limone: {
         title: "Limone Room",
         price: "From €120 / night",
-        category: "Room for up to 5 guests",
-        description: "Limone Room is a spacious and bright accommodation ideal for families or group stays. It features a plush king-size bed, additional seating/bedding, and direct access to a panoramic balcony with lovely views over the villa's Mediterranean garden. Comes with private bathroom and kitchen access.",
-        images: ["limone_1.png", "limone_2.png", "limone_3.png", "limone_4.png"],
-        features: [
-          "✓ Up to 5 Guests",
-          "✓ Private Bathroom",
-          "✓ Panoramic Balcony",
-          "✓ Wi-Fi & Air Conditioning",
-          "✓ Equipped Kitchen Access",
-          "✓ Pets Allowed"
-        ],
-        selectValue: "Limone Room (Up to 5 guests)"
+        capacity: "Up to 5 guests",
+        description: "Bright and spacious, the Limone Room offers a cozy environment with a King-Size double bed and the possibility of extra beds for families. It features an en-suite private bathroom and a balcony directly overlooking the inner park.",
+        amenities: ["En-suite private bathroom", "Panoramic balcony", "Air conditioning", "Free Wi-Fi", "Equipped kitchen access", "Pet-Friendly"],
+        images: ["limone_1.png", "galleria_1.png", "galleria_4.png"]
       },
       peschiera: {
         title: "Peschiera Room",
         price: "From €150 / night",
-        category: "Exclusive Suite / Accommodation for up to 8 guests",
-        description: "Peschiera Room is our most comprehensive solution for larger groups or families seeking maximum privacy and independence. Accommodating up to 8 guests, it offers a large living room, an exclusive fully equipped kitchen, and a private terrace for outdoor dining.",
-        images: ["peschiera_1.png", "peschiera_2.png", "peschiera_3.png"],
-        features: [
-          "✓ Up to 8 Guests",
-          "✓ Exclusive Private Kitchen",
-          "✓ Furnished Private Terrace",
-          "✓ Spacious Bright Lounge",
-          "✓ Private Bathroom",
-          "✓ Pets Welcome"
-        ],
-        selectValue: "Peschiera Room (Up to 8 guests)"
+        capacity: "Up to 8 guests",
+        description: "Ideal for large families or groups of friends. The Peschiera Room includes a spacious sleeping area, a dedicated kitchen for exclusive use, and a private terrace for outdoor dining.",
+        amenities: ["Kitchen for exclusive use", "Private terrace", "Large lounge area", "Air conditioning", "High-speed Wi-Fi", "Pets allowed"],
+        images: ["peschiera_1.png", "galleria_2.png", "galleria_4.png"]
       },
       riva: {
         title: "Riva Room",
         price: "From €130 / night",
-        category: "Comfort Room for up to 4 guests",
-        description: "Riva Room combines elegance and comfort. Perfect for couples or small families, it offers a private bathroom, a dedicated scenic balcony overlooking the park, and access to all villa amenities including the fully equipped kitchen.",
-        images: ["riva_1.png", "riva_2.png", "riva_3.png"],
-        features: [
-          "✓ Up to 4 Guests",
-          "✓ Private Bathroom",
-          "✓ Private Balcony",
-          "✓ High-Speed Wi-Fi",
-          "✓ Shared Kitchen Access",
-          "✓ Pet-Friendly"
-        ],
-        selectValue: "Riva Room (Up to 4 guests)"
+        capacity: "Up to 4 guests",
+        description: "Tastefully decorated with elegant details, the Riva Room is perfect for those seeking tranquility. Equipped with a private garden-view balcony and immediate access to the guesthouse kitchen.",
+        amenities: ["Park view balcony", "Private bathroom", "Accessible shared kitchen", "TV & Wi-Fi", "Air conditioning", "Pet-Friendly"],
+        images: ["riva_1.png", "galleria_3.png", "galleria_5.JPG"]
       }
     };
 
-    let activeRoomKey = null;
-
-    function openRoomModal(key) {
-      const room = roomData[key];
+    function openRoomModal(roomId) {
+      const room = roomData[roomId];
       if (!room) return;
-      activeRoomKey = key;
 
-      document.getElementById('modalRoomTitle').innerText = room.title;
-      document.getElementById('modalRoomPrice').innerText = room.price;
-      document.getElementById('modalRoomCategory').innerText = room.category;
-      document.getElementById('modalRoomDescription').innerText = room.description;
-      document.getElementById('modalMainImage').src = room.images[0];
+      const modalContent = document.getElementById('modalContent');
+      modalContent.innerHTML = `
+        <span class="text-xs font-semibold uppercase tracking-widest text-brand-gold">${room.capacity}</span>
+        <h3 class="text-3xl font-serif text-trulli-900 mt-1 mb-2">${room.title}</h3>
+        <p class="text-sm font-semibold text-emerald-700 mb-6">${room.price}</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-6">
+          ${room.images.map(img => `<img src="${img}" class="rounded-xl object-cover h-44 w-full cursor-pointer hover:opacity-90 transition-opacity" onclick="zoomImage('${img}')" />`).join('')}
+        </div>
 
-      const thumbsContainer = document.getElementById('modalThumbnails');
-      thumbsContainer.innerHTML = '';
-      room.images.forEach((imgSrc, idx) => {
-        const thumb = document.createElement('img');
-        thumb.src = imgSrc;
-        thumb.className = `w-20 h-16 object-cover rounded-xl cursor-pointer border-2 transition-all ${idx === 0 ? 'border-trulli-900 scale-95' : 'border-transparent opacity-70 hover:opacity-100'}`;
-        thumb.onclick = () => {
-          document.getElementById('modalMainImage').src = imgSrc;
-          Array.from(thumbsContainer.children).forEach(c => {
-            c.classList.remove('border-trulli-900', 'scale-95');
-            c.classList.add('border-transparent', 'opacity-70');
-          });
-          thumb.classList.add('border-trulli-900', 'scale-95');
-          thumb.classList.remove('border-transparent', 'opacity-70');
-        };
-        thumbsContainer.appendChild(thumb);
-      });
+        <p class="text-trulli-500 text-sm leading-relaxed mb-6">${room.description}</p>
 
-      const featuresContainer = document.getElementById('modalRoomFeatures');
-      featuresContainer.innerHTML = '';
-      room.features.forEach(feat => {
-        const li = document.createElement('li');
-        li.className = 'bg-trulli-100 p-2.5 rounded-lg border border-gray-100 font-medium';
-        li.innerText = feat;
-        featuresContainer.appendChild(li);
-      });
+        <h4 class="font-serif text-lg font-semibold text-trulli-900 mb-3">Included Amenities</h4>
+        <ul class="grid grid-cols-2 gap-2 text-xs text-gray-600 mb-6">
+          ${room.amenities.map(a => `<li class="flex items-center gap-2">✔ ${a}</li>`).join('')}
+        </ul>
+
+        <div class="pt-4 border-t border-gray-100 flex justify-end">
+          <a href="#prenota" onclick="closeRoomModal()" class="bg-trulli-900 text-white px-6 py-2.5 rounded-xl text-xs font-semibold hover:bg-trulli-500 transition-colors">Request Availability</a>
+        </div>
+      `;
 
       document.getElementById('roomModal').classList.remove('hidden');
-      document.body.style.overflow = 'hidden';
     }
 
     function closeRoomModal() {
       document.getElementById('roomModal').classList.add('hidden');
-      document.body.style.overflow = 'auto';
-    }
-
-    function selectRoomFromModal() {
-      if (activeRoomKey && roomData[activeRoomKey]) {
-        const selectElem = document.getElementById('roomSelect');
-        if (selectElem) {
-          selectElem.value = roomData[activeRoomKey].selectValue;
-        }
-      }
-      closeRoomModal();
-      document.getElementById('prenota').scrollIntoView({ behavior: 'smooth' });
     }
 
     function zoomImage(src) {
       document.getElementById('zoomedImage').src = src;
       document.getElementById('imageModal').classList.remove('hidden');
-      document.body.style.overflow = 'hidden';
     }
 
     function closeImageModal() {
       document.getElementById('imageModal').classList.add('hidden');
-      document.body.style.overflow = 'auto';
     }
 
     function sendWhatsAppBooking() {
@@ -683,12 +607,12 @@
       const pets = document.getElementById('pets').value;
 
       if (!checkin || !checkout) {
-        alert('Please select check-in and check-out dates.');
+        alert("Please select both Check-in and Check-out dates.");
         return;
       }
 
-      const text = `Hello Nest Guesthouse! I would like to check availability:%0A%0A- Check-in: ${checkin}%0A- Check-out: ${checkout}%0A- Room: ${room}%0A- Guests: ${adults}, ${kids}%0A- Pets: ${pets}`;
-      window.open(`https://wa.me/393518401998?text=${text}`, '_blank');
+      const msg = `Hello Nest Guesthouse, I would like to check availability:\n- Check-in: ${checkin}\n- Check-out: ${checkout}\n- Room: ${room}\n- Guests: ${adults}, ${kids}\n- Pets: ${pets}`;
+      window.open(`https://wa.me/393518401998?text=${encodeURIComponent(msg)}`, '_blank');
     }
 
     function sendEmailBooking() {
@@ -700,14 +624,14 @@
       const pets = document.getElementById('pets').value;
 
       if (!checkin || !checkout) {
-        alert('Please select check-in and check-out dates.');
+        alert("Please select both Check-in and Check-out dates.");
         return;
       }
 
-      const subject = encodeURIComponent('Booking Inquiry - Nest Guesthouse');
-      const body = encodeURIComponent(`Hello Nest Guesthouse,\n\nI would like to inquire about availability for the following stay:\n\n- Check-in: ${checkin}\n- Check-out: ${checkout}\n- Desired Room: ${room}\n- Adults: ${adults}\n- Children: ${kids}\n- Pets: ${pets}\n\nThank you!`);
-
-      window.location.href = `mailto:nestguesthouseitaly@gmail.com?subject=${subject}&body=${body}`;
+      const subject = `Booking Inquiry: ${room}`;
+      const body = `Hello Nest Guesthouse,\n\nI would like to request a quote and check availability for the following stay:\n\n- Check-in: ${checkin}\n- Check-out: ${checkout}\n- Preferred Room: ${room}\n- Guests: ${adults}, ${kids}\n- Pets: ${pets}\n\nLooking forward to hearing from you,\nBest regards.`;
+      
+      window.location.href = `mailto:nestguesthouse2024@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     }
   </script>
 </body>
