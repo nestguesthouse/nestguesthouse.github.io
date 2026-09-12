@@ -495,147 +495,36 @@
     </div>
   </section>
 
+  <!-- Small Banner Convenzioni Parchi Divertimento -->
+  <section class="py-6 bg-white border-y border-gray-100">
+    <div class="container mx-auto px-4">
+      <div class="bg-gradient-to-r from-amber-500 to-amber-600 rounded-2xl p-4 md:p-6 shadow-md text-white flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-3 text-center sm:text-left">
+          <span class="text-3xl bg-white/20 p-2.5 rounded-xl shrink-0">🎟️</span>
+          <div>
+            <h4 class="font-serif text-lg font-semibold leading-snug">Biglietti Scontati per i Parchi del Garda</h4>
+            <p class="text-xs text-amber-100 mt-0.5">Approfitta delle tariffe agevolate in convenzione riservate agli ospiti di Nest Guesthouse.</p>
+          </div>
+        </div>
+        <a href="https://nestguesthouse.gardaway.it/it/categoria/parchi-divertimento" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="whitespace-nowrap bg-white text-amber-700 font-semibold px-5 py-2.5 rounded-xl text-xs shadow hover:bg-amber-50 hover:scale-105 transition-all duration-300">
+          Acquista Biglietti Agevolati &rarr;
+        </a>
+      </div>
+    </div>
+  </section>
+
   <!-- Gallery Section -->
   <section id="gallery" class="py-20 bg-white">
     <div class="container mx-auto px-4">
       <div class="text-center mb-12 max-w-2xl mx-auto">
         <h2 class="text-3xl md:text-5xl font-serif mb-4">Galleria della Struttura</h2>
-        <p class="text-trulli-500">Scopri l'atmosfera, il giardino e le camere della nostra Guesthouse.</p>
-      </div>
-      <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
-        <div class="overflow-hidden rounded-xl shadow-sm cursor-pointer" onclick="zoomImage('galleria_1.png')"><img src="galleria_1.png" alt="Interno della Villa" class="w-full h-48 md:h-64 object-cover hover-lift transition-transform duration-[1.8s] hover:scale-105" /></div>
-        <div class="overflow-hidden rounded-xl shadow-sm cursor-pointer" onclick="zoomImage('galleria_2.png')"><img src="galleria_2.png" alt="Esterni e Giardino" class="w-full h-48 md:h-64 object-cover hover-lift transition-transform duration-[1.8s] hover:scale-105" /></div>
-        <div class="overflow-hidden rounded-xl shadow-sm cursor-pointer" onclick="zoomImage('galleria_3.png')"><img src="galleria_3.png" alt="Piscina della Villa" class="w-full h-48 md:h-64 object-cover hover-lift transition-transform duration-[1.8s] hover:scale-105" /></div>
-        <div class="overflow-hidden rounded-xl shadow-sm cursor-pointer" onclick="zoomImage('galleria_4.png')"><img src="galleria_4.png" alt="Cucine Attrezzate" class="w-full h-48 md:h-64 object-cover hover-lift transition-transform duration-[1.8s] hover:scale-105" /></div>
-        <div class="overflow-hidden rounded-xl shadow-sm cursor-pointer" onclick="zoomImage('galleria_5.JPG')"><img src="galleria_5.JPG" alt="Galleria Nest Guesthouse" class="w-full h-48 md:h-64 object-cover hover-lift transition-transform duration-[1.8s] hover:scale-105" /></div>
-        <div class="overflow-hidden rounded-xl shadow-sm cursor-pointer" onclick="zoomImage('galleria_6.JPG')"><img src="galleria_6.JPG" alt="Galleria Nest Guesthouse" class="w-full h-48 md:h-64 object-cover hover-lift transition-transform duration-[1.8s] hover:scale-105" /></div>
+        <p class="text-trulli-500">Scopri l'atmosfera, il giardino e le camere de</p>
       </div>
     </div>
   </section>
 
-  <!-- Room Details Modal -->
-  <div id="roomModal" class="fixed inset-0 bg-black/80 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm overflow-y-auto">
-    <div class="bg-white rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto relative p-6 md:p-8 shadow-2xl">
-      <button onclick="closeRoomModal()" class="absolute top-4 right-4 bg-gray-100 hover:bg-gray-200 text-gray-800 rounded-full p-2 transition-colors">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-      </button>
-
-      <div id="modalContent">
-        <!-- Contenuto dinamico della camera caricato via JS -->
-      </div>
-    </div>
-  </div>
-
-  <!-- Image Zoom Modal -->
-  <div id="imageModal" class="fixed inset-0 bg-black/90 z-50 hidden flex items-center justify-center p-4 cursor-pointer" onclick="closeImageModal()">
-    <img id="zoomedImage" src="" alt="Zoom" class="max-w-full max-h-[90vh] rounded-xl object-contain shadow-2xl">
-  </div>
-
-  <script>
-    const roomData = {
-      limone: {
-        title: "Camera Limone",
-        price: "Da €120 / notte",
-        capacity: "Fino a 5 ospiti",
-        description: "Luminosa e spaziosa, la Camera Limone offre un ambiente accogliente con un letto matrimoniale King-Size e possibilità di letti aggiuntivi per le famiglie. Dispone di bagno privato en-suite e balcone con affaccio diretto sul parco interno.",
-        amenities: ["Bagno privato en-suite", "Balcone panoramico", "Aria condizionata", "Wi-Fi Gratuito", "Accesso cucina attrezzata", "Pet-Friendly"],
-        images: ["limone_1_1.png", "limone_1_2.png", "limone_1_3.png"]
-      },
-      peschiera: {
-        title: "Camera Peschiera",
-        price: "Da €150 / notte",
-        capacity: "Fino a 8 ospiti",
-        description: "Ideale per famiglie numerose o gruppi di amici. La Camera Peschiera comprende un'ampia zona notte, cucina dedicata ad uso esclusivo e terrazza privata per pranzi e cene all'aperto.",
-        amenities: ["Cucina ad uso esclusivo", "Terrazza privata", "Ampio soggiorno lounge", "Aria condizionata", "Wi-Fi ad alta velocità", "Ammessi animali"],
-        images: ["peschiera_1_1.png", "peschiera_1_2.png", "peschiera_1_3.png"]
-      },
-      riva: {
-        title: "Camera Riva",
-        price: "Da €130 / notte",
-        capacity: "Fino a 4 ospiti",
-        description: "Arredata con gusto e dettagli eleganti, la Camera Riva è perfetta per chi cerca tranquillità. Dotata di un balcone privato vista giardino e accesso immediato alla cucina della guesthouse.",
-        amenities: ["Balcone vista parco", "Bagno privato", "Cucina condivisa accessibile", "TV & Wi-Fi", "Aria condizionata", "Pet-Friendly"],
-        images: ["riva_1_1.png", "riva_1_2.png", "riva_1_3.png"]
-      }
-    };
-
-    function openRoomModal(roomId) {
-      const room = roomData[roomId];
-      if (!room) return;
-
-      const modalContent = document.getElementById('modalContent');
-      modalContent.innerHTML = `
-        <span class="text-xs font-semibold uppercase tracking-widest text-brand-gold">${room.capacity}</span>
-        <h3 class="text-3xl font-serif text-trulli-900 mt-1 mb-2">${room.title}</h3>
-        <p class="text-sm font-semibold text-emerald-700 mb-6">${room.price}</p>
-        
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-6">
-          ${room.images.map(img => `<img src="${img}" class="rounded-xl object-cover h-44 w-full cursor-pointer hover:opacity-90 transition-opacity" onclick="zoomImage('${img}')" />`).join('')}
-        </div>
-
-        <p class="text-trulli-500 text-sm leading-relaxed mb-6">${room.description}</p>
-
-        <h4 class="font-serif text-lg font-semibold text-trulli-900 mb-3">Servizi Inclusi</h4>
-        <ul class="grid grid-cols-2 gap-2 text-xs text-gray-600 mb-6">
-          ${room.amenities.map(a => `<li class="flex items-center gap-2">✔ ${a}</li>`).join('')}
-        </ul>
-
-        <div class="pt-4 border-t border-gray-100 flex justify-end">
-          <a href="#prenota" onclick="closeRoomModal()" class="bg-trulli-900 text-white px-6 py-2.5 rounded-xl text-xs font-semibold hover:bg-trulli-500 transition-colors">Richiedi Disponibilità</a>
-        </div>
-      `;
-
-      document.getElementById('roomModal').classList.remove('hidden');
-    }
-
-    function closeRoomModal() {
-      document.getElementById('roomModal').classList.add('hidden');
-    }
-
-    function zoomImage(src) {
-      document.getElementById('zoomedImage').src = src;
-      document.getElementById('imageModal').classList.remove('hidden');
-    }
-
-    function closeImageModal() {
-      document.getElementById('imageModal').classList.add('hidden');
-    }
-
-    function sendWhatsAppBooking() {
-      const checkin = document.getElementById('checkin').value;
-      const checkout = document.getElementById('checkout').value;
-      const room = document.getElementById('roomSelect').value;
-      const adults = document.getElementById('adults').value;
-      const kids = document.getElementById('kids').value;
-      const pets = document.getElementById('pets').value;
-
-      if (!checkin || !checkout) {
-        alert("Seleziona sia la data di Check-in che quella di Check-out.");
-        return;
-      }
-
-      const msg = `Ciao Nest Guesthouse, vorrei verificare la disponibilità:\n- Check-in: ${checkin}\n- Check-out: ${checkout}\n- Camera: ${room}\n- Ospiti: ${adults}, ${kids}\n- Animali: ${pets}`;
-      window.open(`https://wa.me/393518401998?text=${encodeURIComponent(msg)}`, '_blank');
-    }
-
-    function sendEmailBooking() {
-      const checkin = document.getElementById('checkin').value;
-      const checkout = document.getElementById('checkout').value;
-      const room = document.getElementById('roomSelect').value;
-      const adults = document.getElementById('adults').value;
-      const kids = document.getElementById('kids').value;
-      const pets = document.getElementById('pets').value;
-
-      if (!checkin || !checkout) {
-        alert("Seleziona sia la data di Check-in che quella di Check-out.");
-        return;
-      }
-
-      const subject = `Richiesta di Prenotazione: ${room}`;
-      const body = `Ciao Nest Guesthouse,\n\nVorrei richiedere un preventivo e verificare la disponibilità per il seguente soggiorno:\n\n- Check-in: ${checkin}\n- Check-out: ${checkout}\n- Camera Preferita: ${room}\n- Ospiti: ${adults}, ${kids}\n- Animali al seguito: ${pets}\n\nIn attesa di un riscontro,\nCordiali saluti.`;
-      
-      window.location.href = `mailto:nestguesthouse2024@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    }
-  </script>
 </body>
 </html>
